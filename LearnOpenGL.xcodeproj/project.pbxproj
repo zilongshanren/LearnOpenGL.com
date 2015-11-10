@@ -29,7 +29,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		294AD63D1BF1C7D3006ECCAD /* LearnOpenGL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LearnOpenGL; sourceTree = BUILT_PRODUCTS_DIR; };
+		294AD63D1BF1C7D3006ECCAD /* HelloWindow */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HelloWindow; sourceTree = BUILT_PRODUCTS_DIR; };
 		294AD6471BF1C928006ECCAD /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = LearnOpenGL/libglfw3.a; sourceTree = "<group>"; };
 		294AD64B1BF1C97B006ECCAD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		294AD64D1BF1C98D006ECCAD /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -69,7 +69,7 @@
 		294AD63E1BF1C7D3006ECCAD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				294AD63D1BF1C7D3006ECCAD /* LearnOpenGL */,
+				294AD63D1BF1C7D3006ECCAD /* HelloWindow */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,9 +113,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		294AD63C1BF1C7D3006ECCAD /* LearnOpenGL */ = {
+		294AD63C1BF1C7D3006ECCAD /* HelloWindow */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 294AD6441BF1C7D3006ECCAD /* Build configuration list for PBXNativeTarget "LearnOpenGL" */;
+			buildConfigurationList = 294AD6441BF1C7D3006ECCAD /* Build configuration list for PBXNativeTarget "HelloWindow" */;
 			buildPhases = (
 				294AD6391BF1C7D3006ECCAD /* Sources */,
 				294AD63A1BF1C7D3006ECCAD /* Frameworks */,
@@ -125,9 +125,9 @@
 			);
 			dependencies = (
 			);
-			name = LearnOpenGL;
+			name = HelloWindow;
 			productName = LearnOpenGL;
-			productReference = 294AD63D1BF1C7D3006ECCAD /* LearnOpenGL */;
+			productReference = 294AD63D1BF1C7D3006ECCAD /* HelloWindow */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -156,7 +156,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				294AD63C1BF1C7D3006ECCAD /* LearnOpenGL */,
+				294AD63C1BF1C7D3006ECCAD /* HelloWindow */,
 			);
 		};
 /* End PBXProject section */
@@ -288,13 +288,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		294AD6441BF1C7D3006ECCAD /* Build configuration list for PBXNativeTarget "LearnOpenGL" */ = {
+		294AD6441BF1C7D3006ECCAD /* Build configuration list for PBXNativeTarget "HelloWindow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				294AD6451BF1C7D3006ECCAD /* Debug */,
 				294AD6461BF1C7D3006ECCAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
