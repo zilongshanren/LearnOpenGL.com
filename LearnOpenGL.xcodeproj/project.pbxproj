@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		294AD6411BF1C7D3006ECCAD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 294AD6401BF1C7D3006ECCAD /* main.cpp */; };
+		294AD6481BF1C928006ECCAD /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6471BF1C928006ECCAD /* libglfw3.a */; };
+		294AD64C1BF1C97B006ECCAD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD64B1BF1C97B006ECCAD /* CoreGraphics.framework */; };
+		294AD6561BF1C9F3006ECCAD /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6551BF1C9F3006ECCAD /* IOKit.framework */; };
+		294AD65A1BF1CA09006ECCAD /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6591BF1CA09006ECCAD /* AppKit.framework */; };
+		294AD65B1BF1CA1A006ECCAD /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD64D1BF1C98D006ECCAD /* CoreVideo.framework */; };
+		294AD6601BF1CD5E006ECCAD /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD65F1BF1CD5E006ECCAD /* OpenGL.framework */; };
+		294AD6621BF1D44A006ECCAD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 294AD6611BF1D44A006ECCAD /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +30,13 @@
 
 /* Begin PBXFileReference section */
 		294AD63D1BF1C7D3006ECCAD /* LearnOpenGL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LearnOpenGL; sourceTree = BUILT_PRODUCTS_DIR; };
-		294AD6401BF1C7D3006ECCAD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		294AD6471BF1C928006ECCAD /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = LearnOpenGL/libglfw3.a; sourceTree = "<group>"; };
+		294AD64B1BF1C97B006ECCAD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		294AD64D1BF1C98D006ECCAD /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		294AD6551BF1C9F3006ECCAD /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		294AD6591BF1CA09006ECCAD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		294AD65F1BF1CD5E006ECCAD /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		294AD6611BF1D44A006ECCAD /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = HelloWindows/main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +44,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				294AD6601BF1CD5E006ECCAD /* OpenGL.framework in Frameworks */,
+				294AD65B1BF1CA1A006ECCAD /* CoreVideo.framework in Frameworks */,
+				294AD65A1BF1CA09006ECCAD /* AppKit.framework in Frameworks */,
+				294AD6561BF1C9F3006ECCAD /* IOKit.framework in Frameworks */,
+				294AD64C1BF1C97B006ECCAD /* CoreGraphics.framework in Frameworks */,
+				294AD6481BF1C928006ECCAD /* libglfw3.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +59,8 @@
 		294AD6341BF1C7D3006ECCAD = {
 			isa = PBXGroup;
 			children = (
+				294AD65D1BF1CA6A006ECCAD /* 3rd */,
+				294AD65C1BF1CA5E006ECCAD /* Frameworks */,
 				294AD63F1BF1C7D3006ECCAD /* LearnOpenGL */,
 				294AD63E1BF1C7D3006ECCAD /* Products */,
 			);
@@ -57,9 +77,37 @@
 		294AD63F1BF1C7D3006ECCAD /* LearnOpenGL */ = {
 			isa = PBXGroup;
 			children = (
-				294AD6401BF1C7D3006ECCAD /* main.cpp */,
+				294AD65E1BF1CB67006ECCAD /* HelloWindow */,
 			);
 			path = LearnOpenGL;
+			sourceTree = "<group>";
+		};
+		294AD65C1BF1CA5E006ECCAD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				294AD65F1BF1CD5E006ECCAD /* OpenGL.framework */,
+				294AD6591BF1CA09006ECCAD /* AppKit.framework */,
+				294AD6551BF1C9F3006ECCAD /* IOKit.framework */,
+				294AD64D1BF1C98D006ECCAD /* CoreVideo.framework */,
+				294AD64B1BF1C97B006ECCAD /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		294AD65D1BF1CA6A006ECCAD /* 3rd */ = {
+			isa = PBXGroup;
+			children = (
+				294AD6471BF1C928006ECCAD /* libglfw3.a */,
+			);
+			name = 3rd;
+			sourceTree = "<group>";
+		};
+		294AD65E1BF1CB67006ECCAD /* HelloWindow */ = {
+			isa = PBXGroup;
+			children = (
+				294AD6611BF1D44A006ECCAD /* main.cpp */,
+			);
+			name = HelloWindow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				294AD6411BF1C7D3006ECCAD /* main.cpp in Sources */,
+				294AD6621BF1D44A006ECCAD /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,14 +255,24 @@
 		294AD6451BF1C7D3006ECCAD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LearnOpenGL",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/LearnOpenGL";
 			};
 			name = Debug;
 		};
 		294AD6461BF1C7D3006ECCAD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LearnOpenGL",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/LearnOpenGL";
 			};
 			name = Release;
 		};
