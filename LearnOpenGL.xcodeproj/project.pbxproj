@@ -14,10 +14,26 @@
 		294AD65B1BF1CA1A006ECCAD /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD64D1BF1C98D006ECCAD /* CoreVideo.framework */; };
 		294AD6601BF1CD5E006ECCAD /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD65F1BF1CD5E006ECCAD /* OpenGL.framework */; };
 		294AD6621BF1D44A006ECCAD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 294AD6611BF1D44A006ECCAD /* main.cpp */; };
+		29CBA3A81BF30BCE0036B776 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD65F1BF1CD5E006ECCAD /* OpenGL.framework */; };
+		29CBA3A91BF30BCE0036B776 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD64D1BF1C98D006ECCAD /* CoreVideo.framework */; };
+		29CBA3AA1BF30BCE0036B776 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6591BF1CA09006ECCAD /* AppKit.framework */; };
+		29CBA3AB1BF30BCE0036B776 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6551BF1C9F3006ECCAD /* IOKit.framework */; };
+		29CBA3AC1BF30BCE0036B776 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD64B1BF1C97B006ECCAD /* CoreGraphics.framework */; };
+		29CBA3AD1BF30BCE0036B776 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6471BF1C928006ECCAD /* libglfw3.a */; };
+		29CBA3B71BF30C160036B776 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 29CBA3B51BF30C0E0036B776 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		294AD63B1BF1C7D3006ECCAD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		29CBA3AE1BF30BCE0036B776 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -37,6 +53,8 @@
 		294AD6591BF1CA09006ECCAD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		294AD65F1BF1CD5E006ECCAD /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		294AD6611BF1D44A006ECCAD /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = HelloWindows/main.cpp; sourceTree = "<group>"; };
+		29CBA3B21BF30BCE0036B776 /* HelloTriangle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HelloTriangle; sourceTree = BUILT_PRODUCTS_DIR; };
+		29CBA3B51BF30C0E0036B776 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +68,19 @@
 				294AD6561BF1C9F3006ECCAD /* IOKit.framework in Frameworks */,
 				294AD64C1BF1C97B006ECCAD /* CoreGraphics.framework in Frameworks */,
 				294AD6481BF1C928006ECCAD /* libglfw3.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29CBA3A71BF30BCE0036B776 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29CBA3A81BF30BCE0036B776 /* OpenGL.framework in Frameworks */,
+				29CBA3A91BF30BCE0036B776 /* CoreVideo.framework in Frameworks */,
+				29CBA3AA1BF30BCE0036B776 /* AppKit.framework in Frameworks */,
+				29CBA3AB1BF30BCE0036B776 /* IOKit.framework in Frameworks */,
+				29CBA3AC1BF30BCE0036B776 /* CoreGraphics.framework in Frameworks */,
+				29CBA3AD1BF30BCE0036B776 /* libglfw3.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				294AD63D1BF1C7D3006ECCAD /* HelloWindow */,
+				29CBA3B21BF30BCE0036B776 /* HelloTriangle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -77,6 +109,7 @@
 		294AD63F1BF1C7D3006ECCAD /* LearnOpenGL */ = {
 			isa = PBXGroup;
 			children = (
+				29CBA3B41BF30C0E0036B776 /* HelloTriangles */,
 				294AD65E1BF1CB67006ECCAD /* HelloWindow */,
 			);
 			path = LearnOpenGL;
@@ -110,6 +143,14 @@
 			name = HelloWindow;
 			sourceTree = "<group>";
 		};
+		29CBA3B41BF30C0E0036B776 /* HelloTriangles */ = {
+			isa = PBXGroup;
+			children = (
+				29CBA3B51BF30C0E0036B776 /* main.cpp */,
+			);
+			path = HelloTriangles;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -128,6 +169,23 @@
 			name = HelloWindow;
 			productName = LearnOpenGL;
 			productReference = 294AD63D1BF1C7D3006ECCAD /* HelloWindow */;
+			productType = "com.apple.product-type.tool";
+		};
+		29CBA3A41BF30BCE0036B776 /* HelloTriangle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 29CBA3AF1BF30BCE0036B776 /* Build configuration list for PBXNativeTarget "HelloTriangle" */;
+			buildPhases = (
+				29CBA3A51BF30BCE0036B776 /* Sources */,
+				29CBA3A71BF30BCE0036B776 /* Frameworks */,
+				29CBA3AE1BF30BCE0036B776 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelloTriangle;
+			productName = LearnOpenGL;
+			productReference = 29CBA3B21BF30BCE0036B776 /* HelloTriangle */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -157,6 +215,7 @@
 			projectRoot = "";
 			targets = (
 				294AD63C1BF1C7D3006ECCAD /* HelloWindow */,
+				29CBA3A41BF30BCE0036B776 /* HelloTriangle */,
 			);
 		};
 /* End PBXProject section */
@@ -167,6 +226,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				294AD6621BF1D44A006ECCAD /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29CBA3A51BF30BCE0036B776 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29CBA3B71BF30C160036B776 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +343,30 @@
 			};
 			name = Release;
 		};
+		29CBA3B01BF30BCE0036B776 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LearnOpenGL",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/LearnOpenGL";
+			};
+			name = Debug;
+		};
+		29CBA3B11BF30BCE0036B776 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LearnOpenGL",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/LearnOpenGL";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -293,6 +384,15 @@
 			buildConfigurations = (
 				294AD6451BF1C7D3006ECCAD /* Debug */,
 				294AD6461BF1C7D3006ECCAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		29CBA3AF1BF30BCE0036B776 /* Build configuration list for PBXNativeTarget "HelloTriangle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29CBA3B01BF30BCE0036B776 /* Debug */,
+				29CBA3B11BF30BCE0036B776 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
