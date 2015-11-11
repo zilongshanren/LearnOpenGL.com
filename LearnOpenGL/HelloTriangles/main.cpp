@@ -192,8 +192,6 @@ int main(int argc, const char * argv[]) {
 
     while (!glfwWindowShouldClose(window)) {
         glfwPollEvents();
-        
-
         //do rendering
         glClearColor(0.2, 0.3, 0.3, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
@@ -214,8 +212,12 @@ int main(int argc, const char * argv[]) {
     }
 
     glDeleteVertexArrays(1, &VAO);
+    glDeleteVertexArrays(1, &vao2);
     glDeleteBuffers(1, &VBO);
+    glDeleteBuffers(1, &vbo2);
     glDeleteBuffers(1, &EBO);
+    glDeleteProgram(shaderProgram);
+    glDeleteProgram(shaderProgram2);
     
     glfwTerminate();
     return 0;
