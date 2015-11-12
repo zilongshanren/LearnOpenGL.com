@@ -77,6 +77,9 @@ int main(int argc, const char * argv[]) {
     
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)0);
     glEnableVertexAttribArray(0);
+    
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+    glEnableVertexAttribArray(1);
 
     glBindVertexArray(0);
     
@@ -89,13 +92,16 @@ int main(int argc, const char * argv[]) {
         glClearColor(0.2, 0.3, 0.3, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
         
-        GLfloat timeValue = glfwGetTime();
-        GLfloat greenValue = (sin(timeValue) / 2) + 0.5;
-        GLint vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+//        GLfloat timeValue = glfwGetTime();
+//        GLfloat greenValue = (sin(timeValue) / 2) + 0.5;
+//        GLint vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+        GLint offsetLocation = glGetUniformLocation(shaderProgram, "offset");
 
         glUseProgram(shaderProgram);
         
-        glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0);
+        glUniform1f(offsetLocation, 0.4f);
+        
+//        glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0);
 
         //draw the first triangles
         glBindVertexArray(VAO);
