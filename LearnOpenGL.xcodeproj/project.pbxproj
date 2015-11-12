@@ -21,6 +21,15 @@
 		29CBA3AC1BF30BCE0036B776 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD64B1BF1C97B006ECCAD /* CoreGraphics.framework */; };
 		29CBA3AD1BF30BCE0036B776 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6471BF1C928006ECCAD /* libglfw3.a */; };
 		29CBA3B71BF30C160036B776 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 29CBA3B51BF30C0E0036B776 /* main.cpp */; };
+		29CBA3BD1BF45FBC0036B776 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD65F1BF1CD5E006ECCAD /* OpenGL.framework */; };
+		29CBA3BE1BF45FBC0036B776 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD64D1BF1C98D006ECCAD /* CoreVideo.framework */; };
+		29CBA3BF1BF45FBC0036B776 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6591BF1CA09006ECCAD /* AppKit.framework */; };
+		29CBA3C01BF45FBC0036B776 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6551BF1C9F3006ECCAD /* IOKit.framework */; };
+		29CBA3C11BF45FBC0036B776 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD64B1BF1C97B006ECCAD /* CoreGraphics.framework */; };
+		29CBA3C21BF45FBC0036B776 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6471BF1C928006ECCAD /* libglfw3.a */; };
+		29CBA3CC1BF45FFF0036B776 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 29CBA3C91BF45FDE0036B776 /* main.cpp */; };
+		29CBA3D01BF463470036B776 /* vertex.vsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA3CA1BF45FDE0036B776 /* vertex.vsh */; };
+		29CBA3D11BF463480036B776 /* fragment.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA3CD1BF462710036B776 /* fragment.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,6 +51,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		29CBA3C31BF45FBC0036B776 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				29CBA3D01BF463470036B776 /* vertex.vsh in CopyFiles */,
+				29CBA3D11BF463480036B776 /* fragment.fsh in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +75,10 @@
 		294AD6611BF1D44A006ECCAD /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = HelloWindows/main.cpp; sourceTree = "<group>"; };
 		29CBA3B21BF30BCE0036B776 /* HelloTriangle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HelloTriangle; sourceTree = BUILT_PRODUCTS_DIR; };
 		29CBA3B51BF30C0E0036B776 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		29CBA3C71BF45FBC0036B776 /* Shaders */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Shaders; sourceTree = BUILT_PRODUCTS_DIR; };
+		29CBA3C91BF45FDE0036B776 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		29CBA3CA1BF45FDE0036B776 /* vertex.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = vertex.vsh; sourceTree = "<group>"; };
+		29CBA3CD1BF462710036B776 /* fragment.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = fragment.fsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +108,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		29CBA3BC1BF45FBC0036B776 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29CBA3BD1BF45FBC0036B776 /* OpenGL.framework in Frameworks */,
+				29CBA3BE1BF45FBC0036B776 /* CoreVideo.framework in Frameworks */,
+				29CBA3BF1BF45FBC0036B776 /* AppKit.framework in Frameworks */,
+				29CBA3C01BF45FBC0036B776 /* IOKit.framework in Frameworks */,
+				29CBA3C11BF45FBC0036B776 /* CoreGraphics.framework in Frameworks */,
+				29CBA3C21BF45FBC0036B776 /* libglfw3.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -102,6 +139,7 @@
 			children = (
 				294AD63D1BF1C7D3006ECCAD /* HelloWindow */,
 				29CBA3B21BF30BCE0036B776 /* HelloTriangle */,
+				29CBA3C71BF45FBC0036B776 /* Shaders */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,6 +147,7 @@
 		294AD63F1BF1C7D3006ECCAD /* LearnOpenGL */ = {
 			isa = PBXGroup;
 			children = (
+				29CBA3C81BF45FDE0036B776 /* Shaders */,
 				29CBA3B41BF30C0E0036B776 /* HelloTriangles */,
 				294AD65E1BF1CB67006ECCAD /* HelloWindow */,
 			);
@@ -151,6 +190,16 @@
 			path = HelloTriangles;
 			sourceTree = "<group>";
 		};
+		29CBA3C81BF45FDE0036B776 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				29CBA3C91BF45FDE0036B776 /* main.cpp */,
+				29CBA3CA1BF45FDE0036B776 /* vertex.vsh */,
+				29CBA3CD1BF462710036B776 /* fragment.fsh */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -188,6 +237,23 @@
 			productReference = 29CBA3B21BF30BCE0036B776 /* HelloTriangle */;
 			productType = "com.apple.product-type.tool";
 		};
+		29CBA3B91BF45FBC0036B776 /* Shaders */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 29CBA3C41BF45FBC0036B776 /* Build configuration list for PBXNativeTarget "Shaders" */;
+			buildPhases = (
+				29CBA3BA1BF45FBC0036B776 /* Sources */,
+				29CBA3BC1BF45FBC0036B776 /* Frameworks */,
+				29CBA3C31BF45FBC0036B776 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Shaders;
+			productName = LearnOpenGL;
+			productReference = 29CBA3C71BF45FBC0036B776 /* Shaders */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -216,6 +282,7 @@
 			targets = (
 				294AD63C1BF1C7D3006ECCAD /* HelloWindow */,
 				29CBA3A41BF30BCE0036B776 /* HelloTriangle */,
+				29CBA3B91BF45FBC0036B776 /* Shaders */,
 			);
 		};
 /* End PBXProject section */
@@ -234,6 +301,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				29CBA3B71BF30C160036B776 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29CBA3BA1BF45FBC0036B776 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29CBA3CC1BF45FFF0036B776 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +442,30 @@
 			};
 			name = Release;
 		};
+		29CBA3C51BF45FBC0036B776 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LearnOpenGL",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/LearnOpenGL";
+			};
+			name = Debug;
+		};
+		29CBA3C61BF45FBC0036B776 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LearnOpenGL",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/LearnOpenGL";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -393,6 +492,15 @@
 			buildConfigurations = (
 				29CBA3B01BF30BCE0036B776 /* Debug */,
 				29CBA3B11BF30BCE0036B776 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		29CBA3C41BF45FBC0036B776 /* Build configuration list for PBXNativeTarget "Shaders" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29CBA3C51BF45FBC0036B776 /* Debug */,
+				29CBA3C61BF45FBC0036B776 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

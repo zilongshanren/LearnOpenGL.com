@@ -14,28 +14,6 @@
 
 const GLuint WIDTH = 800, HEIGHT = 600;
 
-// Shaders
-const GLchar* vertexShaderSource = "#version 330 core\n"
-"layout (location = 0) in vec3 position;\n"
-"void main()\n"
-"{\n"
-"gl_Position = vec4(position.x, position.y, position.z, 1.0);\n"
-"}\0";
-
-const GLchar* fragmentShaderSource = "#version 330 core\n"
-"out vec4 color;\n"
-"void main()\n"
-"{\n"
-"color = vec4(1.0f, 1.0f, 0.0f, 1.0f);\n"
-"}\n\0";
-
-const GLchar* fragmentShaderSource2 = "#version 330 core\n"
-"out vec4 color;\n"
-"void main()\n"
-"{\n"
-"color = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-"}\n\0";
-
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
 
 int main(int argc, const char * argv[]) {
@@ -49,7 +27,7 @@ int main(int argc, const char * argv[]) {
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
 
-    auto window = glfwCreateWindow(WIDTH, HEIGHT, "Hello Triangles", nullptr, nullptr);
+    auto window = glfwCreateWindow(WIDTH, HEIGHT, "Shaders", nullptr, nullptr);
 
     if (nullptr == window) {
         std::cout << "Failed to create GLFW windows" << std::endl;
@@ -64,11 +42,8 @@ int main(int argc, const char * argv[]) {
     glViewport(0, 0, actualWidth, actualHeight);
 
     glfwSetKeyCallback(window, key_callback);
- 
-    GLuint shaderProgram = createShaderProgramWithSource(vertexShaderSource, fragmentShaderSource);
     
-    GLuint shaderProgram2 = createShaderProgramWithSource(vertexShaderSource, fragmentShaderSource2);
-
+    GLuint shaderProgram = createShaderProgramWithFilenames("vertex.vsh", "fragment.fsh");
     
     GLfloat trianglesData[] = {
         -0.75, 0,0,
@@ -133,12 +108,6 @@ int main(int argc, const char * argv[]) {
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 3);
         glBindVertexArray(0);
-        
-        //draw the second triangles
-        glUseProgram(shaderProgram2);
-        glBindVertexArray(vao2);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
-        glBindVertexArray(0);
        
         glfwSwapBuffers(window);
     }
@@ -149,7 +118,6 @@ int main(int argc, const char * argv[]) {
     glDeleteBuffers(1, &vbo2);
     glDeleteBuffers(1, &EBO);
     glDeleteProgram(shaderProgram);
-    glDeleteProgram(shaderProgram2);
     
     glfwTerminate();
     return 0;
