@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <math.h>
 #include "GLFW/glfw3.h"
 //include this header for using glGenVertexArrays
 #include <OpenGL/gl3.h>
@@ -43,23 +44,21 @@ int main(int argc, const char * argv[]) {
 
     glfwSetKeyCallback(window, key_callback);
     
+    GLint nrAttributes;
+    glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &nrAttributes);
+    std::cout << "Maximum nr of vertex attributes supported: " << nrAttributes << std::endl;
+    
     GLuint shaderProgram = createShaderProgramWithFilenames("vertex.vsh", "fragment.fsh");
     
-    GLfloat trianglesData[] = {
-        -0.75, 0,0,
-        -0.25, 0,0,
-        -0.5,0.5,0,
-    };
-    
-    GLfloat triangles2[] = {
-        0.25,0,0,
-        0.75,0,0,
-        0.5, 0.5,0
+    GLfloat vertices[] = {
+        // Positions         // Colors
+        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // Bottom Right
+        -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // Bottom Left
+        0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // Top
     };
     
     GLuint indices[] = {  // Note that we start from 0!
-        0, 1, 3,   // First Triangle
-        1, 2, 3    // Second Triangle
+        0, 1, 2   // First Triangle
     };
     
     GLuint VAO;
@@ -69,31 +68,18 @@ int main(int argc, const char * argv[]) {
     GLuint VBO;
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(trianglesData), trianglesData, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
     
     GLuint EBO;
     glGenBuffers(1, &EBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
     
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)0);
     glEnableVertexAttribArray(0);
 
     glBindVertexArray(0);
     
-    GLuint vao2;
-    glGenVertexArrays(1, &vao2);
-    glBindVertexArray(vao2);
-    
-    GLuint vbo2;
-    glGenBuffers(1, &vbo2);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo2);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(triangles2), triangles2, GL_STATIC_DRAW);
-    
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
-    glEnableVertexAttribArray(0);
-    
-    glBindVertexArray(0);
     
 //    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
@@ -103,19 +89,25 @@ int main(int argc, const char * argv[]) {
         glClearColor(0.2, 0.3, 0.3, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
         
+        GLfloat timeValue = glfwGetTime();
+        GLfloat greenValue = (sin(timeValue) / 2) + 0.5;
+        GLint vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+
         glUseProgram(shaderProgram);
+        
+        glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0);
+
         //draw the first triangles
         glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
+    
        
         glfwSwapBuffers(window);
     }
 
     glDeleteVertexArrays(1, &VAO);
-    glDeleteVertexArrays(1, &vao2);
     glDeleteBuffers(1, &VBO);
-    glDeleteBuffers(1, &vbo2);
     glDeleteBuffers(1, &EBO);
     glDeleteProgram(shaderProgram);
     

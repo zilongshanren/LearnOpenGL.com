@@ -79,6 +79,8 @@
 		29CBA3C91BF45FDE0036B776 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		29CBA3CA1BF45FDE0036B776 /* vertex.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = vertex.vsh; sourceTree = "<group>"; };
 		29CBA3CD1BF462710036B776 /* fragment.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = fragment.fsh; sourceTree = "<group>"; };
+		29CBA3D21BF463C60036B776 /* glhelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = glhelpers.h; path = LearnOpenGL/glhelpers.h; sourceTree = "<group>"; };
+		29CBA3D31BF463C60036B776 /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = debug.h; path = LearnOpenGL/debug.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,8 @@
 		294AD65D1BF1CA6A006ECCAD /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				29CBA3D21BF463C60036B776 /* glhelpers.h */,
+				29CBA3D31BF463C60036B776 /* debug.h */,
 				294AD6471BF1C928006ECCAD /* libglfw3.a */,
 			);
 			name = 3rd;
