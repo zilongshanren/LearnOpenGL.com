@@ -12,6 +12,7 @@
 //include this header for using glGenVertexArrays
 #include <OpenGL/gl3.h>
 #include "glhelpers.h"
+#include "SOIL.h"
 
 const GLuint WIDTH = 800, HEIGHT = 600;
 
@@ -46,19 +47,23 @@ int main(int argc, const char * argv[]) {
     
     GLint nrAttributes;
     glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &nrAttributes);
-    std::cout << "Maximum nr of vertex attributes supported: " << nrAttributes << std::endl;
+    std::cout << "Maximum number of vertex attributes supported: " << nrAttributes << std::endl;
     
     GLuint shaderProgram = createShaderProgramWithFilenames("vertex.vsh", "fragment.fsh");
     
     GLfloat vertices[] = {
-        // Positions         // Colors
-        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // Bottom Right
-        -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // Bottom Left
-        0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // Top
+        // Positions          // Colors           // Texture Coords
+        0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // Top Right
+        0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // Bottom Right
+        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // Bottom Left
+        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // Top Left
     };
     
+    
+    
     GLuint indices[] = {  // Note that we start from 0!
-        0, 1, 2   // First Triangle
+        0, 1, 2,   // First Triangle
+        2, 0, 3
     };
     
     GLuint VAO;
@@ -75,13 +80,34 @@ int main(int argc, const char * argv[]) {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
     
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
     glEnableVertexAttribArray(0);
     
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
     glEnableVertexAttribArray(1);
+    
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
+    glEnableVertexAttribArray(2);
 
     glBindVertexArray(0);
+    
+    int width, height;
+    unsigned char* image = SOIL_load_image("container.jpg", &width, &height, 0, SOIL_LOAD_RGB);
+    GLuint texture;
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    
+    SOIL_free_image_data(image);
+    glBindTexture(GL_TEXTURE_2D, 0);
     
     
 //    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -92,20 +118,13 @@ int main(int argc, const char * argv[]) {
         glClearColor(0.2, 0.3, 0.3, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
         
-//        GLfloat timeValue = glfwGetTime();
-//        GLfloat greenValue = (sin(timeValue) / 2) + 0.5;
-//        GLint vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
-        GLint offsetLocation = glGetUniformLocation(shaderProgram, "offset");
-
         glUseProgram(shaderProgram);
         
-        glUniform1f(offsetLocation, 0.4f);
-        
-//        glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0);
-
         //draw the first triangles
+        glBindTexture(GL_TEXTURE_2D, texture);
         glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+        
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
     
        

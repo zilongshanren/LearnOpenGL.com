@@ -39,6 +39,8 @@
 		29CBA3EA1BF5B35C0036B776 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 29CBA3E71BF5B34C0036B776 /* main.cpp */; };
 		29CBA3EB1BF5B39A0036B776 /* fragment.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA3E61BF5B34C0036B776 /* fragment.fsh */; };
 		29CBA3EC1BF5B39A0036B776 /* vertex.vsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA3E81BF5B34C0036B776 /* vertex.vsh */; };
+		29CBA3F01BF5C3590036B776 /* libSOIL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CBA3ED1BF5C3450036B776 /* libSOIL.a */; };
+		29CBA3F21BF5C3840036B776 /* container.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA3F11BF5C3800036B776 /* container.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -77,6 +79,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				29CBA3F21BF5C3840036B776 /* container.jpg in CopyFiles */,
 				29CBA3EB1BF5B39A0036B776 /* fragment.fsh in CopyFiles */,
 				29CBA3EC1BF5B39A0036B776 /* vertex.vsh in CopyFiles */,
 			);
@@ -105,6 +108,9 @@
 		29CBA3E61BF5B34C0036B776 /* fragment.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = fragment.fsh; sourceTree = "<group>"; };
 		29CBA3E71BF5B34C0036B776 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		29CBA3E81BF5B34C0036B776 /* vertex.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = vertex.vsh; sourceTree = "<group>"; };
+		29CBA3ED1BF5C3450036B776 /* libSOIL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSOIL.a; path = LearnOpenGL/SOIL/libSOIL.a; sourceTree = "<group>"; };
+		29CBA3EE1BF5C3450036B776 /* SOIL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOIL.h; path = LearnOpenGL/SOIL/SOIL.h; sourceTree = "<group>"; };
+		29CBA3F11BF5C3800036B776 /* container.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = container.jpg; path = LearnOpenGL/container.jpg; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +162,7 @@
 				29CBA3DA1BF5B32D0036B776 /* AppKit.framework in Frameworks */,
 				29CBA3DB1BF5B32D0036B776 /* IOKit.framework in Frameworks */,
 				29CBA3DC1BF5B32D0036B776 /* CoreGraphics.framework in Frameworks */,
+				29CBA3F01BF5C3590036B776 /* libSOIL.a in Frameworks */,
 				29CBA3DD1BF5B32D0036B776 /* libglfw3.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,6 +217,8 @@
 		294AD65D1BF1CA6A006ECCAD /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				29CBA3ED1BF5C3450036B776 /* libSOIL.a */,
+				29CBA3EE1BF5C3450036B776 /* SOIL.h */,
 				29CBA3D21BF463C60036B776 /* glhelpers.h */,
 				29CBA3D31BF463C60036B776 /* debug.h */,
 				294AD6471BF1C928006ECCAD /* libglfw3.a */,
@@ -246,6 +255,7 @@
 		29CBA3E51BF5B34C0036B776 /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				29CBA3F11BF5C3800036B776 /* container.jpg */,
 				29CBA3E61BF5B34C0036B776 /* fragment.fsh */,
 				29CBA3E71BF5B34C0036B776 /* main.cpp */,
 				29CBA3E81BF5B34C0036B776 /* vertex.vsh */,
@@ -479,6 +489,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LearnOpenGL",
+					"$(PROJECT_DIR)/LearnOpenGL/SOIL",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/LearnOpenGL";
@@ -491,6 +502,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LearnOpenGL",
+					"$(PROJECT_DIR)/LearnOpenGL/SOIL",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/LearnOpenGL";
@@ -551,6 +563,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LearnOpenGL",
+					"$(PROJECT_DIR)/LearnOpenGL/SOIL",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/LearnOpenGL";
@@ -563,6 +576,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LearnOpenGL",
+					"$(PROJECT_DIR)/LearnOpenGL/SOIL",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/LearnOpenGL";
