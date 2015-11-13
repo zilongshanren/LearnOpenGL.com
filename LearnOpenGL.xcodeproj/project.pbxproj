@@ -41,6 +41,7 @@
 		29CBA3EC1BF5B39A0036B776 /* vertex.vsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA3E81BF5B34C0036B776 /* vertex.vsh */; };
 		29CBA3F01BF5C3590036B776 /* libSOIL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CBA3ED1BF5C3450036B776 /* libSOIL.a */; };
 		29CBA3F21BF5C3840036B776 /* container.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA3F11BF5C3800036B776 /* container.jpg */; };
+		29CBA3F41BF5CAA80036B776 /* awesomeface.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA3F31BF5CA9C0036B776 /* awesomeface.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -79,6 +80,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				29CBA3F41BF5CAA80036B776 /* awesomeface.png in CopyFiles */,
 				29CBA3F21BF5C3840036B776 /* container.jpg in CopyFiles */,
 				29CBA3EB1BF5B39A0036B776 /* fragment.fsh in CopyFiles */,
 				29CBA3EC1BF5B39A0036B776 /* vertex.vsh in CopyFiles */,
@@ -111,6 +113,7 @@
 		29CBA3ED1BF5C3450036B776 /* libSOIL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSOIL.a; path = LearnOpenGL/SOIL/libSOIL.a; sourceTree = "<group>"; };
 		29CBA3EE1BF5C3450036B776 /* SOIL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOIL.h; path = LearnOpenGL/SOIL/SOIL.h; sourceTree = "<group>"; };
 		29CBA3F11BF5C3800036B776 /* container.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = container.jpg; path = LearnOpenGL/container.jpg; sourceTree = SOURCE_ROOT; };
+		29CBA3F31BF5CA9C0036B776 /* awesomeface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = awesomeface.png; path = LearnOpenGL/awesomeface.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +258,7 @@
 		29CBA3E51BF5B34C0036B776 /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				29CBA3F31BF5CA9C0036B776 /* awesomeface.png */,
 				29CBA3F11BF5C3800036B776 /* container.jpg */,
 				29CBA3E61BF5B34C0036B776 /* fragment.fsh */,
 				29CBA3E71BF5B34C0036B776 /* main.cpp */,
