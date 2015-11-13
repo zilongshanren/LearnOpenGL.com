@@ -19,6 +19,11 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>Textures.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -33,6 +38,11 @@
 			<true/>
 		</dict>
 		<key>29CBA3B91BF45FBC0036B776</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>29CBA3D41BF5B32D0036B776</key>
 		<dict>
 			<key>primary</key>
 			<true/>
