@@ -14,8 +14,14 @@
 #include "glhelpers.h"
 #include "SOIL.h"
 
+#define GLM_FORCE_RADIANS
+
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
+
 const GLuint WIDTH = 800, HEIGHT = 600;
-float mixValue = 1.0;
+float mixValue = 0.4;
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
 
@@ -59,7 +65,6 @@ int main(int argc, const char * argv[]) {
         -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.f, 0.f,   // Bottom Left
         -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.f, 1.f    // Top Left
     };
-    
     
     
     GLuint indices[] = {  // Note that we start from 0!
@@ -148,10 +153,30 @@ int main(int argc, const char * argv[]) {
         glUniform1i(glGetUniformLocation(shaderProgram, "ourTexture2"), 1);
         
         glUniform1f(glGetUniformLocation(shaderProgram, "mixValue"), mixValue);
+        
+        glm::mat4 trans;
+        
+        trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.0f));
+        trans = glm::rotate(trans, glm::radians((GLfloat)glfwGetTime() * 50.0f),
+                            glm::vec3(0.0f, 0.0f, 1.0f));
+       
+        
+        GLuint transformLoc = glGetUniformLocation(shaderProgram, "transforms");
+        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
         //draw the first triangles
         glBindVertexArray(VAO);
         
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        
+        trans = glm::mat4(); //reset the previous matrix
+        trans = glm::translate(trans, glm::vec3(-0.5f, 0.5f, 0.0f));
+        float scaleFactor = sinf((GLfloat)glfwGetTime()) ;
+        trans = glm::scale(trans,glm::vec3(scaleFactor, scaleFactor, 1.0f ));
+    
+        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
+        
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        
         glBindVertexArray(0);
     
        
