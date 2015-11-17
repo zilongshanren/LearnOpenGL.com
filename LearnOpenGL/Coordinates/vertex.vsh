@@ -8,11 +8,13 @@ out vec4 vertexColor;
 out vec2 TexCoord;
 
 uniform float offset;
-uniform mat4 transforms;
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 projection;
 
 void main()
 {
-    gl_Position = transforms * vec4(position.x, position.y, position.z, 1.0);
+    gl_Position = projection * view * model * vec4(position, 1.0);
     vertexColor = vec4(color, 1.0);
     TexCoord = vec2(texCoord.x, texCoord.y);
 }

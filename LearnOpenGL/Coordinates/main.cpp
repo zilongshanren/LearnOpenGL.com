@@ -136,6 +136,16 @@ int main(int argc, const char * argv[]) {
     
     
 //    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glm::mat4 model;
+    model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    
+    glm::mat4 view;
+    // Note that we're translating the scene in the reverse direction of where we want to move
+    view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+    
+    glm::mat4 projection;
+    projection = glm::perspective(glm::radians(45.0f), (float)WIDTH / HEIGHT, 0.1f, 100.0f);
+    
 
     while (!glfwWindowShouldClose(window)) {
         glfwPollEvents();
@@ -153,27 +163,18 @@ int main(int argc, const char * argv[]) {
         glUniform1i(glGetUniformLocation(shaderProgram, "ourTexture2"), 1);
         
         glUniform1f(glGetUniformLocation(shaderProgram, "mixValue"), mixValue);
-        
-        glm::mat4 trans;
-        
-        trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.0f));
-        trans = glm::rotate(trans, glm::radians((GLfloat)glfwGetTime() * 50.0f),
-                            glm::vec3(0.0f, 0.0f, 1.0f));
        
         
-        GLuint transformLoc = glGetUniformLocation(shaderProgram, "transforms");
-        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
+        GLuint modelLoc = glGetUniformLocation(shaderProgram, "model");
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        
+        GLuint viewLoc = glGetUniformLocation(shaderProgram, "view");
+        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        
+        GLuint projectionLoc = glGetUniformLocation(shaderProgram, "projection");
+        glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
         //draw the first triangles
         glBindVertexArray(VAO);
-        
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        
-        trans = glm::mat4(); //reset the previous matrix
-        trans = glm::translate(trans, glm::vec3(-0.5f, 0.5f, 0.0f));
-        float scaleFactor = sinf((GLfloat)glfwGetTime()) ;
-        trans = glm::scale(trans,glm::vec3(scaleFactor, scaleFactor, 1.0f ));
-    
-        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
         
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         
