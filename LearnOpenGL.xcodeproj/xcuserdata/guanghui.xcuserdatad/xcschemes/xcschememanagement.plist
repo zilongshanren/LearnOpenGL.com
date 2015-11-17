@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Coordinates.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>HelloTriangle.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -53,6 +58,11 @@
 			<true/>
 		</dict>
 		<key>29CBA3F51BF9A57F0036B776</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>29CBA4111BFAF5480036B776</key>
 		<dict>
 			<key>primary</key>
 			<true/>
