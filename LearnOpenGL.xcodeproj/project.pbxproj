@@ -201,6 +201,7 @@
 		29CBA4451BFC5C390036B776 /* fragment.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = fragment.fsh; sourceTree = "<group>"; };
 		29CBA4461BFC5C390036B776 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		29CBA4471BFC5C390036B776 /* vertex.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = vertex.vsh; sourceTree = "<group>"; };
+		29CBA44C1BFC6F690036B776 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = LearnOpenGL/Camera.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -355,6 +356,7 @@
 		294AD65D1BF1CA6A006ECCAD /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				29CBA44C1BFC6F690036B776 /* Camera.h */,
 				29CBA3ED1BF5C3450036B776 /* libSOIL.a */,
 				29CBA3EE1BF5C3450036B776 /* SOIL.h */,
 				29CBA3D21BF463C60036B776 /* glhelpers.h */,
