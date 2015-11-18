@@ -36,7 +36,7 @@ int main(int argc, const char * argv[]) {
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
 
-    auto window = glfwCreateWindow(WIDTH, HEIGHT, "Coordinates", nullptr, nullptr);
+    auto window = glfwCreateWindow(WIDTH, HEIGHT, "Cameras", nullptr, nullptr);
 
     if (nullptr == window) {
         std::cout << "Failed to create GLFW windows" << std::endl;
