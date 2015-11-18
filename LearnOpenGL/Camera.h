@@ -63,7 +63,26 @@ public:
     // Returns the view matrix calculated using Eular Angles and the LookAt Matrix
     glm::mat4 GetViewMatrix()
     {
-        return glm::lookAt(this->Position, this->Position + this->Front, this->Up);
+        glm::mat4 translation;
+        translation[3][0] = -this->Position.x;
+        translation[3][1] = -this->Position.y;
+        translation[3][2] = -this->Position.z;
+        
+        glm::mat4 rotation;
+        rotation[0][0] = Right.x;
+        rotation[1][0] = Right.y;
+        rotation[2][0] = Right.z;
+        
+        rotation[0][1] = Up.x;
+        rotation[1][1] = Up.y;
+        rotation[2][1] = Up.z;
+        
+        rotation[0][2] = -Front.x;
+        rotation[1][2] = -Front.y;
+        rotation[2][2] = -Front.z;
+
+        return translation * rotation;
+//        return glm::lookAt(this->Position, this->Position + this->Front, this->Up);
     }
 
     // Processes input received from any keyboard-like input system. Accepts input parameter in the form of camera defined ENUM (to abstract it from windowing systems)
@@ -78,6 +97,9 @@ public:
             this->Position -= this->Right * velocity;
         if (direction == RIGHT)
             this->Position += this->Right * velocity;
+        
+        //uncomment this line to restrict the the player on xz plane
+//        this->Position.y = 0;
     }
 
     // Processes input received from a mouse input system. Expects the offset value in both the x and y direction.
