@@ -77,8 +77,8 @@ int main()
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     
     // Setup some OpenGL options
-//    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_ALWAYS); // Set to always pass the depth test (same effect as glDisable(GL_DEPTH_TEST))
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS); // Set to always pass the depth test (same effect as glDisable(GL_DEPTH_TEST))
     
     // Setup and compile our shaders
     GLuint shaderProgram = createShaderProgramWithFilenames("vertex.vsh", "fragment.fsh");

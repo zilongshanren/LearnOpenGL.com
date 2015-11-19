@@ -99,7 +99,7 @@ public:
             this->Position += this->Right * velocity;
         
         //uncomment this line to restrict the the player on xz plane
-//        this->Position.y = 0;
+        this->Position.y = 0;
     }
 
     // Processes input received from a mouse input system. Expects the offset value in both the x and y direction.
