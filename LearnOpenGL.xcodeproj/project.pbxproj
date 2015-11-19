@@ -85,11 +85,11 @@
 		29CBA45A1BFD9DB80036B776 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD64B1BF1C97B006ECCAD /* CoreGraphics.framework */; };
 		29CBA45B1BFD9DB80036B776 /* libSOIL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CBA3ED1BF5C3450036B776 /* libSOIL.a */; };
 		29CBA45C1BFD9DB80036B776 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6471BF1C928006ECCAD /* libglfw3.a */; };
-		29CBA4601BFD9DB80036B776 /* awesomeface.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA3F31BF5CA9C0036B776 /* awesomeface.png */; };
-		29CBA4611BFD9DB80036B776 /* container.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA3F11BF5C3800036B776 /* container.jpg */; };
 		29CBA4661BFD9DC70036B776 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 29CBA44F1BFD9DAF0036B776 /* main.cpp */; };
 		29CBA4671BFD9DCF0036B776 /* fragment.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA44E1BFD9DAF0036B776 /* fragment.fsh */; };
 		29CBA4681BFD9DCF0036B776 /* vertex.vsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA4501BFD9DAF0036B776 /* vertex.vsh */; };
+		29CBA46B1BFDA3C70036B776 /* marble.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA4691BFDA3C10036B776 /* marble.jpg */; };
+		29CBA46C1BFDA3C70036B776 /* metal.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA46A1BFDA3C10036B776 /* metal.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -180,10 +180,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				29CBA46B1BFDA3C70036B776 /* marble.jpg in CopyFiles */,
+				29CBA46C1BFDA3C70036B776 /* metal.png in CopyFiles */,
 				29CBA4671BFD9DCF0036B776 /* fragment.fsh in CopyFiles */,
 				29CBA4681BFD9DCF0036B776 /* vertex.vsh in CopyFiles */,
-				29CBA4601BFD9DB80036B776 /* awesomeface.png in CopyFiles */,
-				29CBA4611BFD9DB80036B776 /* container.jpg in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +231,8 @@
 		29CBA44F1BFD9DAF0036B776 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		29CBA4501BFD9DAF0036B776 /* vertex.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = vertex.vsh; sourceTree = "<group>"; };
 		29CBA4651BFD9DB80036B776 /* DepthTesting */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DepthTesting; sourceTree = BUILT_PRODUCTS_DIR; };
+		29CBA4691BFDA3C10036B776 /* marble.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = marble.jpg; path = LearnOpenGL/marble.jpg; sourceTree = SOURCE_ROOT; };
+		29CBA46A1BFDA3C10036B776 /* metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = metal.png; path = LearnOpenGL/metal.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,6 +484,8 @@
 		29CBA44D1BFD9DAF0036B776 /* DepthTesting */ = {
 			isa = PBXGroup;
 			children = (
+				29CBA4691BFDA3C10036B776 /* marble.jpg */,
+				29CBA46A1BFDA3C10036B776 /* metal.png */,
 				29CBA44E1BFD9DAF0036B776 /* fragment.fsh */,
 				29CBA44F1BFD9DAF0036B776 /* main.cpp */,
 				29CBA4501BFD9DAF0036B776 /* vertex.vsh */,

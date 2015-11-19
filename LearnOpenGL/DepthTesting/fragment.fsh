@@ -1,15 +1,11 @@
 #version 330 core
-
-in vec2 TexCoord;
+in vec2 TexCoords;
 
 out vec4 color;
 
-uniform sampler2D ourTexture1;
-uniform sampler2D ourTexture2;
-uniform float mixValue;
+uniform sampler2D texture1;
 
 void main()
 {
-    color = mix(texture(ourTexture1, TexCoord), texture(ourTexture2, vec2(1 - TexCoord.x,1- TexCoord.y)), mixValue);
-//    color = vertexColor;
+    color = texture(texture1, TexCoords);
 }
