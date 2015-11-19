@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
+		<key>DepthTesting.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 		<key>HelloTriangle.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -73,6 +78,11 @@
 			<true/>
 		</dict>
 		<key>29CBA4301BFC5C200036B776</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>29CBA4521BFD9DB80036B776</key>
 		<dict>
 			<key>primary</key>
 			<true/>
