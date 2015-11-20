@@ -34,6 +34,11 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>StencilTesting.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
 		<key>Textures.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -83,6 +88,11 @@
 			<true/>
 		</dict>
 		<key>29CBA4521BFD9DB80036B776</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>29CBA4721BFEEC730036B776</key>
 		<dict>
 			<key>primary</key>
 			<true/>

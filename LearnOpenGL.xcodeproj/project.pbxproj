@@ -90,6 +90,18 @@
 		29CBA4681BFD9DCF0036B776 /* vertex.vsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA4501BFD9DAF0036B776 /* vertex.vsh */; };
 		29CBA46B1BFDA3C70036B776 /* marble.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA4691BFDA3C10036B776 /* marble.jpg */; };
 		29CBA46C1BFDA3C70036B776 /* metal.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA46A1BFDA3C10036B776 /* metal.png */; };
+		29CBA4761BFEEC730036B776 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD65F1BF1CD5E006ECCAD /* OpenGL.framework */; };
+		29CBA4771BFEEC730036B776 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD64D1BF1C98D006ECCAD /* CoreVideo.framework */; };
+		29CBA4781BFEEC730036B776 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6591BF1CA09006ECCAD /* AppKit.framework */; };
+		29CBA4791BFEEC730036B776 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6551BF1C9F3006ECCAD /* IOKit.framework */; };
+		29CBA47A1BFEEC730036B776 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD64B1BF1C97B006ECCAD /* CoreGraphics.framework */; };
+		29CBA47B1BFEEC730036B776 /* libSOIL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CBA3ED1BF5C3450036B776 /* libSOIL.a */; };
+		29CBA47C1BFEEC730036B776 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6471BF1C928006ECCAD /* libglfw3.a */; };
+		29CBA47E1BFEEC730036B776 /* marble.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA4691BFDA3C10036B776 /* marble.jpg */; };
+		29CBA47F1BFEEC730036B776 /* metal.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA46A1BFDA3C10036B776 /* metal.png */; };
+		29CBA4861BFEEC810036B776 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 29CBA46F1BFEEC6A0036B776 /* main.cpp */; };
+		29CBA4871BFEEC890036B776 /* fragment.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA46E1BFEEC6A0036B776 /* fragment.fsh */; };
+		29CBA4881BFEEC890036B776 /* vertex.vsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA4701BFEEC6A0036B776 /* vertex.vsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -187,6 +199,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		29CBA47D1BFEEC730036B776 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				29CBA4871BFEEC890036B776 /* fragment.fsh in CopyFiles */,
+				29CBA4881BFEEC890036B776 /* vertex.vsh in CopyFiles */,
+				29CBA47E1BFEEC730036B776 /* marble.jpg in CopyFiles */,
+				29CBA47F1BFEEC730036B776 /* metal.png in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -233,6 +258,10 @@
 		29CBA4651BFD9DB80036B776 /* DepthTesting */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DepthTesting; sourceTree = BUILT_PRODUCTS_DIR; };
 		29CBA4691BFDA3C10036B776 /* marble.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = marble.jpg; path = LearnOpenGL/marble.jpg; sourceTree = SOURCE_ROOT; };
 		29CBA46A1BFDA3C10036B776 /* metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = metal.png; path = LearnOpenGL/metal.png; sourceTree = SOURCE_ROOT; };
+		29CBA46E1BFEEC6A0036B776 /* fragment.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = fragment.fsh; sourceTree = "<group>"; };
+		29CBA46F1BFEEC6A0036B776 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		29CBA4701BFEEC6A0036B776 /* vertex.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = vertex.vsh; sourceTree = "<group>"; };
+		29CBA4851BFEEC730036B776 /* StencilTesting */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = StencilTesting; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,6 +374,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		29CBA4751BFEEC730036B776 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29CBA4761BFEEC730036B776 /* OpenGL.framework in Frameworks */,
+				29CBA4771BFEEC730036B776 /* CoreVideo.framework in Frameworks */,
+				29CBA4781BFEEC730036B776 /* AppKit.framework in Frameworks */,
+				29CBA4791BFEEC730036B776 /* IOKit.framework in Frameworks */,
+				29CBA47A1BFEEC730036B776 /* CoreGraphics.framework in Frameworks */,
+				29CBA47B1BFEEC730036B776 /* libSOIL.a in Frameworks */,
+				29CBA47C1BFEEC730036B776 /* libglfw3.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -369,6 +412,7 @@
 				29CBA4241BFAF5480036B776 /* Coordinates */,
 				29CBA4431BFC5C200036B776 /* Cameras */,
 				29CBA4651BFD9DB80036B776 /* DepthTesting */,
+				29CBA4851BFEEC730036B776 /* StencilTesting */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -376,6 +420,7 @@
 		294AD63F1BF1C7D3006ECCAD /* LearnOpenGL */ = {
 			isa = PBXGroup;
 			children = (
+				29CBA46D1BFEEC6A0036B776 /* StencilTesting */,
 				29CBA44D1BFD9DAF0036B776 /* DepthTesting */,
 				29CBA4441BFC5C390036B776 /* Cameras */,
 				29CBA4251BFAF5550036B776 /* Coordinates */,
@@ -491,6 +536,16 @@
 				29CBA4501BFD9DAF0036B776 /* vertex.vsh */,
 			);
 			path = DepthTesting;
+			sourceTree = "<group>";
+		};
+		29CBA46D1BFEEC6A0036B776 /* StencilTesting */ = {
+			isa = PBXGroup;
+			children = (
+				29CBA46E1BFEEC6A0036B776 /* fragment.fsh */,
+				29CBA46F1BFEEC6A0036B776 /* main.cpp */,
+				29CBA4701BFEEC6A0036B776 /* vertex.vsh */,
+			);
+			path = StencilTesting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -632,6 +687,23 @@
 			productReference = 29CBA4651BFD9DB80036B776 /* DepthTesting */;
 			productType = "com.apple.product-type.tool";
 		};
+		29CBA4721BFEEC730036B776 /* StencilTesting */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 29CBA4821BFEEC730036B776 /* Build configuration list for PBXNativeTarget "StencilTesting" */;
+			buildPhases = (
+				29CBA4731BFEEC730036B776 /* Sources */,
+				29CBA4751BFEEC730036B776 /* Frameworks */,
+				29CBA47D1BFEEC730036B776 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StencilTesting;
+			productName = LearnOpenGL;
+			productReference = 29CBA4851BFEEC730036B776 /* StencilTesting */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -666,6 +738,7 @@
 				29CBA4111BFAF5480036B776 /* Coordinates */,
 				29CBA4301BFC5C200036B776 /* Cameras */,
 				29CBA4521BFD9DB80036B776 /* DepthTesting */,
+				29CBA4721BFEEC730036B776 /* StencilTesting */,
 			);
 		};
 /* End PBXProject section */
@@ -732,6 +805,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				29CBA4661BFD9DC70036B776 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29CBA4731BFEEC730036B776 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29CBA4861BFEEC810036B776 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1021,6 +1102,32 @@
 			};
 			name = Release;
 		};
+		29CBA4831BFEEC730036B776 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LearnOpenGL",
+					"$(PROJECT_DIR)/LearnOpenGL/SOIL",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/LearnOpenGL";
+			};
+			name = Debug;
+		};
+		29CBA4841BFEEC730036B776 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LearnOpenGL",
+					"$(PROJECT_DIR)/LearnOpenGL/SOIL",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/LearnOpenGL";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1101,6 +1208,15 @@
 			buildConfigurations = (
 				29CBA4631BFD9DB80036B776 /* Debug */,
 				29CBA4641BFD9DB80036B776 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		29CBA4821BFEEC730036B776 /* Build configuration list for PBXNativeTarget "StencilTesting" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29CBA4831BFEEC730036B776 /* Debug */,
+				29CBA4841BFEEC730036B776 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
