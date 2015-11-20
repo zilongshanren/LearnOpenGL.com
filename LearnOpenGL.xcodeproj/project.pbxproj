@@ -102,6 +102,7 @@
 		29CBA4861BFEEC810036B776 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 29CBA46F1BFEEC6A0036B776 /* main.cpp */; };
 		29CBA4871BFEEC890036B776 /* fragment.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA46E1BFEEC6A0036B776 /* fragment.fsh */; };
 		29CBA4881BFEEC890036B776 /* vertex.vsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA4701BFEEC6A0036B776 /* vertex.vsh */; };
+		29CBA48A1BFEF1AF0036B776 /* single_color.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA4891BFEF1A30036B776 /* single_color.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -205,6 +206,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				29CBA48A1BFEF1AF0036B776 /* single_color.fsh in CopyFiles */,
 				29CBA4871BFEEC890036B776 /* fragment.fsh in CopyFiles */,
 				29CBA4881BFEEC890036B776 /* vertex.vsh in CopyFiles */,
 				29CBA47E1BFEEC730036B776 /* marble.jpg in CopyFiles */,
@@ -262,6 +264,7 @@
 		29CBA46F1BFEEC6A0036B776 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		29CBA4701BFEEC6A0036B776 /* vertex.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = vertex.vsh; sourceTree = "<group>"; };
 		29CBA4851BFEEC730036B776 /* StencilTesting */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = StencilTesting; sourceTree = BUILT_PRODUCTS_DIR; };
+		29CBA4891BFEF1A30036B776 /* single_color.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = single_color.fsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -544,6 +547,7 @@
 				29CBA46E1BFEEC6A0036B776 /* fragment.fsh */,
 				29CBA46F1BFEEC6A0036B776 /* main.cpp */,
 				29CBA4701BFEEC6A0036B776 /* vertex.vsh */,
+				29CBA4891BFEF1A30036B776 /* single_color.fsh */,
 			);
 			path = StencilTesting;
 			sourceTree = "<group>";
