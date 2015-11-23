@@ -27,6 +27,8 @@
 		295B431B1C02DE4200AAA46F /* fragment.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 295B43001C02DE2600AAA46F /* fragment.fsh */; };
 		295B431C1C02DE4200AAA46F /* single_color.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 295B43021C02DE2600AAA46F /* single_color.fsh */; };
 		295B431D1C02DE4200AAA46F /* vertex.vsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 295B43031C02DE2600AAA46F /* vertex.vsh */; };
+		295B431F1C02DFC300AAA46F /* blending_transparent_window.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 295B431E1C02DFBB00AAA46F /* blending_transparent_window.png */; };
+		295B43211C02E43500AAA46F /* grass.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 295B43201C02E42E00AAA46F /* grass.png */; };
 		29CBA3A81BF30BCE0036B776 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD65F1BF1CD5E006ECCAD /* OpenGL.framework */; };
 		29CBA3A91BF30BCE0036B776 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD64D1BF1C98D006ECCAD /* CoreVideo.framework */; };
 		29CBA3AA1BF30BCE0036B776 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6591BF1CA09006ECCAD /* AppKit.framework */; };
@@ -134,6 +136,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				295B43211C02E43500AAA46F /* grass.png in CopyFiles */,
+				295B431F1C02DFC300AAA46F /* blending_transparent_window.png in CopyFiles */,
 				295B431B1C02DE4200AAA46F /* fragment.fsh in CopyFiles */,
 				295B431C1C02DE4200AAA46F /* single_color.fsh in CopyFiles */,
 				295B431D1C02DE4200AAA46F /* vertex.vsh in CopyFiles */,
@@ -257,6 +261,8 @@
 		295B43021C02DE2600AAA46F /* single_color.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = single_color.fsh; sourceTree = "<group>"; };
 		295B43031C02DE2600AAA46F /* vertex.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = vertex.vsh; sourceTree = "<group>"; };
 		295B43191C02DE2F00AAA46F /* Blending */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Blending; sourceTree = BUILT_PRODUCTS_DIR; };
+		295B431E1C02DFBB00AAA46F /* blending_transparent_window.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blending_transparent_window.png; path = LearnOpenGL/blending_transparent_window.png; sourceTree = SOURCE_ROOT; };
+		295B43201C02E42E00AAA46F /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grass.png; path = LearnOpenGL/grass.png; sourceTree = SOURCE_ROOT; };
 		29CBA3B21BF30BCE0036B776 /* HelloTriangle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HelloTriangle; sourceTree = BUILT_PRODUCTS_DIR; };
 		29CBA3B51BF30C0E0036B776 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		29CBA3C71BF45FBC0036B776 /* Shaders */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Shaders; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -520,6 +526,8 @@
 		295B42FF1C02DE2600AAA46F /* Blending */ = {
 			isa = PBXGroup;
 			children = (
+				295B43201C02E42E00AAA46F /* grass.png */,
+				295B431E1C02DFBB00AAA46F /* blending_transparent_window.png */,
 				295B43001C02DE2600AAA46F /* fragment.fsh */,
 				295B43011C02DE2600AAA46F /* main.cpp */,
 				295B43021C02DE2600AAA46F /* single_color.fsh */,
