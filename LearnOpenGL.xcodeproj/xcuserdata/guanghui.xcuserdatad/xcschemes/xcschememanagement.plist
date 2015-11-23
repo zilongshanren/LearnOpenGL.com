@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Blending.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
 		<key>Cameras.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -53,6 +58,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>294AD63C1BF1C7D3006ECCAD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>295B43051C02DE2F00AAA46F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
