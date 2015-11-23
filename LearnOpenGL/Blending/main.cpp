@@ -2,6 +2,7 @@
 #include <iostream>
 #include <math.h>
 #include <iostream>
+#include <map>
 #include "GLFW/glfw3.h"
 //include this header for using glGenVertexArrays
 #include <OpenGL/gl3.h>
@@ -77,11 +78,13 @@ int main()
     // Setup some OpenGL options
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
-    glEnable(GL_STENCIL_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     // Setup and compile our shaders
-    Shader shader("vertex.vsh", "fragment.fsh");
+    Shader shader("vertex.vsh", "nonDiscard.frag");
     Shader shaderSingleColor("vertex.vsh", "single_color.fsh");
+
     
 #pragma region "object_initialization"
     // Set the object data (buffers, vertex attributes)
@@ -130,7 +133,8 @@ int main()
         -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
     };
     GLfloat planeVertices[] = {
-        // Positions            // Texture Coords (note we set these higher than 1 that together with GL_REPEAT (as texture wrapping mode) will cause the floor texture to repeat)
+        // Positions
+        // Texture Coords (note we set these higher than 1 that together with GL_REPEAT (as texture wrapping mode) will cause the floor texture to repeat)
         5.0f,  -0.5f,  5.0f,  2.0f, 0.0f,
         -5.0f, -0.5f,  5.0f,  0.0f, 0.0f,
         -5.0f, -0.5f, -5.0f,  0.0f, 2.0f,
@@ -141,7 +145,8 @@ int main()
     };
     
     GLfloat transparentVertices[] = {
-        // Positions         // Texture Coords (swapped y coordinates because texture is flipped upside down)
+        // Positions
+        // Texture Coords (swapped y coordinates because texture is flipped upside down)
         0.0f,  0.5f,  0.0f,  0.0f,  0.0f,
         0.0f, -0.5f,  0.0f,  0.0f,  1.0f,
         1.0f, -0.5f,  0.0f,  1.0f,  1.0f,
@@ -164,6 +169,7 @@ int main()
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
     glBindVertexArray(0);
+    
     // Setup plane VAO
     GLuint planeVAO, planeVBO;
     glGenVertexArrays(1, &planeVAO);
@@ -181,6 +187,7 @@ int main()
     GLuint cubeTexture = loadTexture("marble.jpg");
     GLuint floorTexture = loadTexture("metal.png");
     GLuint grassTexture = loadTextureRGBA("grass.png");
+    GLuint windowTexture = loadTextureRGBA("blending_transparent_window.png");
 #pragma endregion
     
     // Setup transparent plane VAO
@@ -204,6 +211,12 @@ int main()
     vegetation.push_back(glm::vec3(-0.3f,  0.0f, -2.3f));
     vegetation.push_back(glm::vec3( 0.5f,  0.0f, -0.6f));
     
+    std::map<float, glm::vec3> sorted;
+    for (GLuint i = 0; i < vegetation.size(); i++) // windows contains all window positions
+    {
+        GLfloat distance = glm::length(camera.Position - vegetation[i]);
+        sorted[distance] = vegetation[i];
+    }
     
     // Game loop
     while(!glfwWindowShouldClose(window))
@@ -222,12 +235,10 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
         // Set uniforms
-        shaderSingleColor.Use();
         glm::mat4 model;
         glm::mat4 view = camera.GetViewMatrix();
         glm::mat4 projection = glm::perspective(camera.Zoom, (float)screenWidth/(float)screenHeight, 0.1f, 100.0f);
-        glUniformMatrix4fv(glGetUniformLocation(shaderSingleColor.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
-        glUniformMatrix4fv(glGetUniformLocation(shaderSingleColor.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+       
         shader.Use();
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
@@ -236,11 +247,12 @@ int main()
         glBindVertexArray(cubeVAO);
         glBindTexture(GL_TEXTURE_2D, cubeTexture);
         model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
-        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        GLint modeLoc = glGetUniformLocation(shader.Program, "model");
+        glUniformMatrix4fv(modeLoc, 1, GL_FALSE, glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 36);
         model = glm::mat4();
         model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
-        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        glUniformMatrix4fv(modeLoc, 1, GL_FALSE, glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 36);
         glBindVertexArray(0);
         
@@ -248,18 +260,18 @@ int main()
         glBindVertexArray(planeVAO);
         glBindTexture(GL_TEXTURE_2D, floorTexture);
         model = glm::mat4();
-        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        glUniformMatrix4fv(modeLoc, 1, GL_FALSE, glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 6);
         glBindVertexArray(0);
         
         // Vegetation
         glBindVertexArray(transparentVAO);
-        glBindTexture(GL_TEXTURE_2D, grassTexture);
-        for (GLuint i = 0; i < vegetation.size(); i++)
+        glBindTexture(GL_TEXTURE_2D, windowTexture);
+        for(std::map<float,glm::vec3>::reverse_iterator it = sorted.rbegin(); it != sorted.rend(); ++it)
         {
             model = glm::mat4();
-            model = glm::translate(model, vegetation[i]);
-            glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+            model = glm::translate(model, it->second);
+            glUniformMatrix4fv(modeLoc, 1, GL_FALSE, glm::value_ptr(model));
             glDrawArrays(GL_TRIANGLES, 0, 6);
         }
         glBindVertexArray(0);
