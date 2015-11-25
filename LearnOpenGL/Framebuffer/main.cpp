@@ -158,15 +158,27 @@ int main()
         1.0f,  0.5f,  0.0f,  1.0f,  0.0f
     };
     
+    float offset = 1.0f;
     GLfloat fullscreenVertices[] = {
         // Positions   // TexCoords
-        -1.0f,  1.0f,  0.0f, 1.0f,
-        -1.0f, -1.0f,  0.0f, 0.0f,
-        1.0f, -1.0f,  1.0f, 0.0f,
+        -offset,  offset,  0.0f, 1.0f,
+        -offset, -offset,  0.0f, 0.0f,
+        offset, -offset,  1.0f, 0.0f,
         
-        -1.0f,  1.0f,  0.0f, 1.0f,
-        1.0f, -1.0f,  1.0f, 0.0f,
-        1.0f,  1.0f,  1.0f, 1.0f
+        -offset,  offset,  0.0f, 1.0f,
+        offset, -offset,  1.0f, 0.0f,
+        offset,  offset,  1.0f, 1.0f
+    };
+    
+    GLfloat sFullscreenVertices[] = {
+        // Positions   // TexCoords
+        -0.2,  0.5,  0.0f, 0.0f,
+        0.2, 0.5,  1.0f, 0.0f,
+        -0.2, 1,  0, 1,
+        
+        -0.2,  1.0,  0, 1.0f,
+        0.2,  0.5,  1, 0,
+        0.2, 1.0,  1.0f, 1.0f
     };
     
     GLuint quadVAO;
@@ -176,6 +188,20 @@ int main()
     glGenBuffers(1, &quadVBO);
     glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(fullscreenVertices), &fullscreenVertices, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid*)0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat)));
+    
+    glBindVertexArray(0);
+    
+    GLuint quadVAO2;
+    glGenVertexArrays(1, &quadVAO2);
+    glBindVertexArray(quadVAO2);
+    GLuint quadVBO2;
+    glGenBuffers(1, &quadVBO2);
+    glBindBuffer(GL_ARRAY_BUFFER, quadVBO2);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(fullscreenVertices), &sFullscreenVertices, GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid*)0);
     glEnableVertexAttribArray(1);
@@ -296,55 +322,92 @@ int main()
         glfwPollEvents();
         Do_Movement();
         
-        // First pass
+        /////////////////////////////////////////////////////
+        // First render pass: Mirror texture...
+        // Bind to framebuffer and draw to color texture as
+        // we normally would, but with the view camera
+        // reversed.
+        // //////////////////////////////////////////////////
         glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+        // Clear all attached buffers
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // We're not using stencil buffer now
-        glEnable(GL_DEPTH_TEST);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // We're not using stencil buffer so why bother with clearing?
         
+        glEnable(GL_DEPTH_TEST);
         // Set uniforms
         shader.Use();
         glm::mat4 model;
+        camera.Yaw += 180.0f; // Turn the camera's yaw 180 degrees around
+        camera.Pitch += 180.0f; // Turn the camera's pitch 180 degrees around
+        camera.ProcessMouseMovement(0, 0, false); // Call this to make sure it updates its camera vectors (should probably create an update function ;)), Note that we removed the pitch constrains for this specific case in the camera class via a boolean (otherwise we can't reverse camera's pitch values)
         glm::mat4 view = camera.GetViewMatrix();
-        glm::mat4 projection = glm::perspective(camera.Zoom, (float)actualWidth/(float)actualHeight, 0.1f, 100.0f);
-       
+        camera.Yaw -= 180.0f; // Reset it back to what it was
+        camera.Pitch -= 180.0f;
+        camera.ProcessMouseMovement(0, 0, 0); // Pitch constraint boolean is set to true as default.
+        glm::mat4 projection = glm::perspective(camera.Zoom, (float)screenWidth/(float)screenHeight, 0.1f, 100.0f);
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
         
+        // Floor
+        glBindVertexArray(planeVAO);
+        glBindTexture(GL_TEXTURE_2D, floorTexture);
+        model = glm::mat4();
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+        glBindVertexArray(0);
         // Cubes
         glBindVertexArray(cubeVAO);
         glBindTexture(GL_TEXTURE_2D, cubeTexture);
         model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
-        GLint modeLoc = glGetUniformLocation(shader.Program, "model");
-        glUniformMatrix4fv(modeLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 36);
         model = glm::mat4();
         model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
-        glUniformMatrix4fv(modeLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 36);
         glBindVertexArray(0);
         
-        //draw floor
+        /////////////////////////////////////////////////////
+        // Second render pass: Draw as normal
+        // //////////////////////////////////////////////////
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        // Clear all attached buffers
+        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // We're not using stencil buffer so why bother with clearing?
+        
+        // Reset the camera uniform to its normal orientation
+        view = camera.GetViewMatrix();
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
+        
+        // Floor
         glBindVertexArray(planeVAO);
         glBindTexture(GL_TEXTURE_2D, floorTexture);
         model = glm::mat4();
-        glUniformMatrix4fv(modeLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 6);
         glBindVertexArray(0);
+        // Cubes
+        glBindVertexArray(cubeVAO);
+        glBindTexture(GL_TEXTURE_2D, cubeTexture);
+        model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        model = glm::mat4();
+        model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        glBindVertexArray(0);
         
-        
-        // Second pass
-        glBindFramebuffer(GL_FRAMEBUFFER, 0); // back to default
-        glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
-        
+        /////////////////////////////////////////////////////
+        // Now also draw the mirror quad with screen texture
+        // //////////////////////////////////////////////////
+        glDisable(GL_DEPTH_TEST); // We disable depth information so the mirror quad is always rendered on top
+        // Draw mirror
         screenShader.Use();
-        glBindVertexArray(quadVAO);
-        glDisable(GL_DEPTH_TEST);
-        glBindTexture(GL_TEXTURE_2D, texColorBuffer);
+        glBindVertexArray(quadVAO2);
+        glBindTexture(GL_TEXTURE_2D, texColorBuffer);	// Use the color attachment texture as the texture of the quad plane
         glDrawArrays(GL_TRIANGLES, 0, 6);
         glBindVertexArray(0);
-        
         // Swap the buffers
         glfwSwapBuffers(window);
     }
