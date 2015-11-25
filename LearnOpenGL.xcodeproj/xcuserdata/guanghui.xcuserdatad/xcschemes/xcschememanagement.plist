@@ -24,6 +24,11 @@
 			<key>orderHint</key>
 			<integer>7</integer>
 		</dict>
+		<key>Framebuffer copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
 		<key>Framebuffer.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -73,6 +78,11 @@
 			<true/>
 		</dict>
 		<key>298C75DA1C0592F7006BAE63</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>298C760A1C05BA3D006BAE63</key>
 		<dict>
 			<key>primary</key>
 			<true/>

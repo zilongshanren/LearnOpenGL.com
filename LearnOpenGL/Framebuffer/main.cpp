@@ -211,7 +211,7 @@ int main()
     glBindVertexArray(0);
     
     // Load textures
-    GLuint cubeTexture = loadTexture("marble.jpg");
+    GLuint cubeTexture = loadTexture("container.jpg");
     GLuint floorTexture = loadTexture("metal.png");
 #pragma endregion
     
