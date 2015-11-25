@@ -1,32 +1,15 @@
-//#version 330 core
-//out vec4 color;
-//
-//float near = 1.0;
-//float far  = 100.0;
-//
-//float LinearizeDepth(float depth)
-//{
-//    float z = depth * 2.0 - 1.0; // Back to NDC
-//    return (2.0 * near * far) / (far + near - z * (far - near));
-//}
-//
-//void main()
-//{
-//    float depth = LinearizeDepth(gl_FragCoord.z) / far; // divide by far for demonstration
-//    color = vec4(vec3(depth), 1.0f);
-//}
-
 #version 330 core
-in vec2 TexCoords;
+layout (location = 0) in vec3 position;
+layout (location = 1) in vec2 texCoords;
 
-out vec4 color;
+out vec2 TexCoords;
 
-uniform sampler2D texture1;
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 projection;
 
 void main()
 {
-    vec4 texColor = texture(texture1, TexCoords);
-    if(texColor.a < 0.1)
-        discard;
-    color = texColor;
+    gl_Position = projection * view * model * vec4(position, 1.0f);
+    TexCoords = texCoords;
 }

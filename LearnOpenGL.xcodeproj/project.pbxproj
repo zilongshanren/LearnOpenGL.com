@@ -41,11 +41,11 @@
 		298C75E81C0592F7006BAE63 /* blending_transparent_window.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 295B431E1C02DFBB00AAA46F /* blending_transparent_window.png */; };
 		298C75EC1C0592F7006BAE63 /* marble.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA4691BFDA3C10036B776 /* marble.jpg */; };
 		298C75ED1C0592F7006BAE63 /* metal.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA46A1BFDA3C10036B776 /* metal.png */; };
-		298C75F91C05931A006BAE63 /* fragment.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 298C75F31C059309006BAE63 /* fragment.fsh */; };
-		298C75FA1C05931A006BAE63 /* nonDiscard.frag in CopyFiles */ = {isa = PBXBuildFile; fileRef = 298C75F51C059309006BAE63 /* nonDiscard.frag */; };
-		298C75FB1C05931A006BAE63 /* single_color.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 298C75F61C059309006BAE63 /* single_color.fsh */; };
-		298C75FC1C05931A006BAE63 /* vertex.vsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 298C75F71C059309006BAE63 /* vertex.vsh */; };
 		298C75FD1C059344006BAE63 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 298C75F41C059309006BAE63 /* main.cpp */; };
+		298C76041C05B6CC006BAE63 /* fragment.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 298C75F31C059309006BAE63 /* fragment.fsh */; };
+		298C76051C05B6CC006BAE63 /* vertex.vsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 298C75F71C059309006BAE63 /* vertex.vsh */; };
+		298C76061C05B6CC006BAE63 /* SingleQuard.vsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 298C76001C059E67006BAE63 /* SingleQuard.vsh */; };
+		298C76071C05B6CC006BAE63 /* SingleQuad.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 298C76011C059E74006BAE63 /* SingleQuad.fsh */; };
 		29CBA3A81BF30BCE0036B776 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD65F1BF1CD5E006ECCAD /* OpenGL.framework */; };
 		29CBA3A91BF30BCE0036B776 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD64D1BF1C98D006ECCAD /* CoreVideo.framework */; };
 		29CBA3AA1BF30BCE0036B776 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6591BF1CA09006ECCAD /* AppKit.framework */; };
@@ -170,10 +170,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				298C75F91C05931A006BAE63 /* fragment.fsh in CopyFiles */,
-				298C75FA1C05931A006BAE63 /* nonDiscard.frag in CopyFiles */,
-				298C75FB1C05931A006BAE63 /* single_color.fsh in CopyFiles */,
-				298C75FC1C05931A006BAE63 /* vertex.vsh in CopyFiles */,
+				298C76041C05B6CC006BAE63 /* fragment.fsh in CopyFiles */,
+				298C76051C05B6CC006BAE63 /* vertex.vsh in CopyFiles */,
+				298C76061C05B6CC006BAE63 /* SingleQuard.vsh in CopyFiles */,
+				298C76071C05B6CC006BAE63 /* SingleQuad.fsh in CopyFiles */,
 				298C75E71C0592F7006BAE63 /* grass.png in CopyFiles */,
 				298C75E81C0592F7006BAE63 /* blending_transparent_window.png in CopyFiles */,
 				298C75EC1C0592F7006BAE63 /* marble.jpg in CopyFiles */,
@@ -305,6 +305,8 @@
 		298C75F51C059309006BAE63 /* nonDiscard.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = nonDiscard.frag; sourceTree = "<group>"; };
 		298C75F61C059309006BAE63 /* single_color.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = single_color.fsh; sourceTree = "<group>"; };
 		298C75F71C059309006BAE63 /* vertex.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = vertex.vsh; sourceTree = "<group>"; };
+		298C76001C059E67006BAE63 /* SingleQuard.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SingleQuard.vsh; sourceTree = "<group>"; };
+		298C76011C059E74006BAE63 /* SingleQuad.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SingleQuad.fsh; sourceTree = "<group>"; };
 		29CBA3B21BF30BCE0036B776 /* HelloTriangle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HelloTriangle; sourceTree = BUILT_PRODUCTS_DIR; };
 		29CBA3B51BF30C0E0036B776 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		29CBA3C71BF45FBC0036B776 /* Shaders */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Shaders; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -603,6 +605,8 @@
 				298C75F51C059309006BAE63 /* nonDiscard.frag */,
 				298C75F61C059309006BAE63 /* single_color.fsh */,
 				298C75F71C059309006BAE63 /* vertex.vsh */,
+				298C76001C059E67006BAE63 /* SingleQuard.vsh */,
+				298C76011C059E74006BAE63 /* SingleQuad.fsh */,
 			);
 			path = Framebuffer;
 			sourceTree = "<group>";

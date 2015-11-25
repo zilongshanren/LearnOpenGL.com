@@ -75,6 +75,9 @@ int main()
     glfwGetFramebufferSize(window, &actualWidth, &actualHeight);
     glViewport(0, 0, actualWidth, actualHeight);
     
+   
+    
+    
     // Setup some OpenGL options
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
@@ -83,8 +86,7 @@ int main()
 
     // Setup and compile our shaders
     Shader shader("vertex.vsh", "nonDiscard.frag");
-    Shader shaderSingleColor("vertex.vsh", "single_color.fsh");
-
+    Shader screenShader("SingleQuard.vsh", "SingleQuad.fsh");
     
 #pragma region "object_initialization"
     // Set the object data (buffers, vertex attributes)
@@ -156,6 +158,31 @@ int main()
         1.0f,  0.5f,  0.0f,  1.0f,  0.0f
     };
     
+    GLfloat fullscreenVertices[] = {
+        // Positions   // TexCoords
+        -1.0f,  1.0f,  0.0f, 1.0f,
+        -1.0f, -1.0f,  0.0f, 0.0f,
+        1.0f, -1.0f,  1.0f, 0.0f,
+        
+        -1.0f,  1.0f,  0.0f, 1.0f,
+        1.0f, -1.0f,  1.0f, 0.0f,
+        1.0f,  1.0f,  1.0f, 1.0f
+    };
+    
+    GLuint quadVAO;
+    glGenVertexArrays(1, &quadVAO);
+    glBindVertexArray(quadVAO);
+    GLuint quadVBO;
+    glGenBuffers(1, &quadVBO);
+    glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(fullscreenVertices), &fullscreenVertices, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid*)0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat)));
+    
+    glBindVertexArray(0);
+    
     
     // Setup cube VAO
     GLuint cubeVAO, cubeVBO;
@@ -186,8 +213,6 @@ int main()
     // Load textures
     GLuint cubeTexture = loadTexture("marble.jpg");
     GLuint floorTexture = loadTexture("metal.png");
-    GLuint grassTexture = loadTextureRGBA("grass.png");
-    GLuint windowTexture = loadTextureRGBA("blending_transparent_window.png");
 #pragma endregion
     
     // Setup transparent plane VAO
@@ -218,6 +243,47 @@ int main()
         sorted[distance] = vegetation[i];
     }
     
+    
+    //create the framebuffer
+    GLuint fbo;
+    glGenFramebuffers(1, &fbo);
+    glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+    
+    //create texture attachment
+    GLuint texColorBuffer;
+    glGenTextures(1, &texColorBuffer);
+    glBindTexture(GL_TEXTURE_2D, texColorBuffer);
+    
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, actualWidth, actualHeight, 0,
+                 GL_RGB, GL_UNSIGNED_BYTE, nullptr);
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    
+    
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texColorBuffer, 0);
+    
+    //    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8, actualWidth, actualHeight, 0,
+    //                 GL_DEPTH_STENCIL, GL_UNSIGNED_INT_24_8, nullptr);
+    //
+    //    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, texture, 0);
+    
+    
+    GLuint rbo;
+    glGenRenderbuffers(1, &rbo);
+    glBindRenderbuffer(GL_RENDERBUFFER, rbo);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, actualWidth, actualHeight);
+    glBindRenderbuffer(GL_RENDERBUFFER, 0);
+    
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
+    
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
+    }
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    
     // Game loop
     while(!glfwWindowShouldClose(window))
     {
@@ -230,16 +296,18 @@ int main()
         glfwPollEvents();
         Do_Movement();
         
-        // Clear the colorbuffer
+        // First pass
+        glBindFramebuffer(GL_FRAMEBUFFER, fbo);
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // We're not using stencil buffer now
+        glEnable(GL_DEPTH_TEST);
         
         // Set uniforms
+        shader.Use();
         glm::mat4 model;
         glm::mat4 view = camera.GetViewMatrix();
-        glm::mat4 projection = glm::perspective(camera.Zoom, (float)screenWidth/(float)screenHeight, 0.1f, 100.0f);
+        glm::mat4 projection = glm::perspective(camera.Zoom, (float)actualWidth/(float)actualHeight, 0.1f, 100.0f);
        
-        shader.Use();
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
         
@@ -264,23 +332,24 @@ int main()
         glDrawArrays(GL_TRIANGLES, 0, 6);
         glBindVertexArray(0);
         
-        // Vegetation
-        glBindVertexArray(transparentVAO);
-        glBindTexture(GL_TEXTURE_2D, windowTexture);
-        for(std::map<float,glm::vec3>::reverse_iterator it = sorted.rbegin(); it != sorted.rend(); ++it)
-        {
-            model = glm::mat4();
-            model = glm::translate(model, it->second);
-            glUniformMatrix4fv(modeLoc, 1, GL_FALSE, glm::value_ptr(model));
-            glDrawArrays(GL_TRIANGLES, 0, 6);
-        }
-        glBindVertexArray(0);
         
+        // Second pass
+        glBindFramebuffer(GL_FRAMEBUFFER, 0); // back to default
+        glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+        
+        screenShader.Use();
+        glBindVertexArray(quadVAO);
+        glDisable(GL_DEPTH_TEST);
+        glBindTexture(GL_TEXTURE_2D, texColorBuffer);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+        glBindVertexArray(0);
         
         // Swap the buffers
         glfwSwapBuffers(window);
     }
     
+    glDeleteFramebuffers(1, &fbo);
     glfwTerminate();
     return 0;
 }
