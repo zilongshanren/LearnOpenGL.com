@@ -49,6 +49,14 @@
 		298C76081C05B9E9006BAE63 /* container.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29CBA3F11BF5C3800036B776 /* container.jpg */; };
 		298C76231C05BA90006BAE63 /* grayscale.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 298C76091C05BA34006BAE63 /* grayscale.fsh */; };
 		298C76251C05BAE8006BAE63 /* kernelEffects.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 298C76241C05BAE2006BAE63 /* kernelEffects.fsh */; };
+		298C762A1C06D3FE006BAE63 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD65F1BF1CD5E006ECCAD /* OpenGL.framework */; };
+		298C762B1C06D3FE006BAE63 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD64D1BF1C98D006ECCAD /* CoreVideo.framework */; };
+		298C762C1C06D3FE006BAE63 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6591BF1CA09006ECCAD /* AppKit.framework */; };
+		298C762D1C06D3FE006BAE63 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6551BF1C9F3006ECCAD /* IOKit.framework */; };
+		298C762E1C06D3FE006BAE63 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD64B1BF1C97B006ECCAD /* CoreGraphics.framework */; };
+		298C762F1C06D3FE006BAE63 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6471BF1C928006ECCAD /* libglfw3.a */; };
+		298C76391C06D41C006BAE63 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 298C76361C06D410006BAE63 /* main.cpp */; };
+		298C763A1C06D421006BAE63 /* vertex.vsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 298C76371C06D410006BAE63 /* vertex.vsh */; };
 		29CBA3A81BF30BCE0036B776 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD65F1BF1CD5E006ECCAD /* OpenGL.framework */; };
 		29CBA3A91BF30BCE0036B776 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD64D1BF1C98D006ECCAD /* CoreVideo.framework */; };
 		29CBA3AA1BF30BCE0036B776 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6591BF1CA09006ECCAD /* AppKit.framework */; };
@@ -187,6 +195,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		298C76301C06D3FE006BAE63 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				298C763A1C06D421006BAE63 /* vertex.vsh in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		29CBA3AE1BF30BCE0036B776 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -315,6 +333,9 @@
 		298C76011C059E74006BAE63 /* SingleQuad.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SingleQuad.fsh; sourceTree = "<group>"; };
 		298C76091C05BA34006BAE63 /* grayscale.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = grayscale.fsh; sourceTree = "<group>"; };
 		298C76241C05BAE2006BAE63 /* kernelEffects.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = kernelEffects.fsh; sourceTree = "<group>"; };
+		298C76341C06D3FE006BAE63 /* Color */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Color; sourceTree = BUILT_PRODUCTS_DIR; };
+		298C76361C06D410006BAE63 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		298C76371C06D410006BAE63 /* vertex.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = vertex.vsh; sourceTree = "<group>"; };
 		29CBA3B21BF30BCE0036B776 /* HelloTriangle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HelloTriangle; sourceTree = BUILT_PRODUCTS_DIR; };
 		29CBA3B51BF30C0E0036B776 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		29CBA3C71BF45FBC0036B776 /* Shaders */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Shaders; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -396,6 +417,19 @@
 				298C75E21C0592F7006BAE63 /* CoreGraphics.framework in Frameworks */,
 				298C75E31C0592F7006BAE63 /* libSOIL.a in Frameworks */,
 				298C75E41C0592F7006BAE63 /* libglfw3.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		298C76291C06D3FE006BAE63 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				298C762A1C06D3FE006BAE63 /* OpenGL.framework in Frameworks */,
+				298C762B1C06D3FE006BAE63 /* CoreVideo.framework in Frameworks */,
+				298C762C1C06D3FE006BAE63 /* AppKit.framework in Frameworks */,
+				298C762D1C06D3FE006BAE63 /* IOKit.framework in Frameworks */,
+				298C762E1C06D3FE006BAE63 /* CoreGraphics.framework in Frameworks */,
+				298C762F1C06D3FE006BAE63 /* libglfw3.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,6 +570,7 @@
 				29CBA4851BFEEC730036B776 /* StencilTesting */,
 				295B43191C02DE2F00AAA46F /* Blending */,
 				298C75F11C0592F7006BAE63 /* Framebuffer */,
+				298C76341C06D3FE006BAE63 /* Color */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -543,6 +578,7 @@
 		294AD63F1BF1C7D3006ECCAD /* LearnOpenGL */ = {
 			isa = PBXGroup;
 			children = (
+				298C76351C06D410006BAE63 /* Color */,
 				298C75F21C059309006BAE63 /* Framebuffer */,
 				295B42FF1C02DE2600AAA46F /* Blending */,
 				29CBA46D1BFEEC6A0036B776 /* StencilTesting */,
@@ -619,6 +655,15 @@
 				298C76011C059E74006BAE63 /* SingleQuad.fsh */,
 			);
 			path = Framebuffer;
+			sourceTree = "<group>";
+		};
+		298C76351C06D410006BAE63 /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				298C76361C06D410006BAE63 /* main.cpp */,
+				298C76371C06D410006BAE63 /* vertex.vsh */,
+			);
+			path = Color;
 			sourceTree = "<group>";
 		};
 		29CBA3B41BF30C0E0036B776 /* HelloTriangles */ = {
@@ -756,6 +801,23 @@
 			name = Framebuffer;
 			productName = LearnOpenGL;
 			productReference = 298C75F11C0592F7006BAE63 /* Framebuffer */;
+			productType = "com.apple.product-type.tool";
+		};
+		298C76261C06D3FE006BAE63 /* Color */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 298C76311C06D3FE006BAE63 /* Build configuration list for PBXNativeTarget "Color" */;
+			buildPhases = (
+				298C76271C06D3FE006BAE63 /* Sources */,
+				298C76291C06D3FE006BAE63 /* Frameworks */,
+				298C76301C06D3FE006BAE63 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Color;
+			productName = LearnOpenGL;
+			productReference = 298C76341C06D3FE006BAE63 /* Color */;
 			productType = "com.apple.product-type.tool";
 		};
 		29CBA3A41BF30BCE0036B776 /* HelloTriangle */ = {
@@ -931,6 +993,7 @@
 				29CBA4721BFEEC730036B776 /* StencilTesting */,
 				295B43051C02DE2F00AAA46F /* Blending */,
 				298C75DA1C0592F7006BAE63 /* Framebuffer */,
+				298C76261C06D3FE006BAE63 /* Color */,
 			);
 		};
 /* End PBXProject section */
@@ -957,6 +1020,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				298C75FD1C059344006BAE63 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		298C76271C06D3FE006BAE63 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				298C76391C06D41C006BAE63 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1178,6 +1249,30 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/LearnOpenGL",
 					"$(PROJECT_DIR)/LearnOpenGL/SOIL",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/LearnOpenGL";
+			};
+			name = Release;
+		};
+		298C76321C06D3FE006BAE63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LearnOpenGL",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/LearnOpenGL";
+			};
+			name = Debug;
+		};
+		298C76331C06D3FE006BAE63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LearnOpenGL",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/LearnOpenGL";
@@ -1423,6 +1518,15 @@
 			buildConfigurations = (
 				298C75EF1C0592F7006BAE63 /* Debug */,
 				298C75F01C0592F7006BAE63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		298C76311C06D3FE006BAE63 /* Build configuration list for PBXNativeTarget "Color" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				298C76321C06D3FE006BAE63 /* Debug */,
+				298C76331C06D3FE006BAE63 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>6</integer>
 		</dict>
+		<key>Color.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
 		<key>Coordinates.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -23,11 +28,6 @@
 		<dict>
 			<key>orderHint</key>
 			<integer>7</integer>
-		</dict>
-		<key>Framebuffer copy.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>11</integer>
 		</dict>
 		<key>Framebuffer.xcscheme</key>
 		<dict>
@@ -83,6 +83,11 @@
 			<true/>
 		</dict>
 		<key>298C760A1C05BA3D006BAE63</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>298C76261C06D3FE006BAE63</key>
 		<dict>
 			<key>primary</key>
 			<true/>
