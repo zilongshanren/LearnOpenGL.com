@@ -57,6 +57,8 @@
 		298C762F1C06D3FE006BAE63 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6471BF1C928006ECCAD /* libglfw3.a */; };
 		298C76391C06D41C006BAE63 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 298C76361C06D410006BAE63 /* main.cpp */; };
 		298C763A1C06D421006BAE63 /* vertex.vsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 298C76371C06D410006BAE63 /* vertex.vsh */; };
+		298C763C1C06E119006BAE63 /* fragment.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 298C763B1C06E111006BAE63 /* fragment.fsh */; };
+		298C763E1C06E370006BAE63 /* lamp.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 298C763D1C06E36A006BAE63 /* lamp.fsh */; };
 		29CBA3A81BF30BCE0036B776 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD65F1BF1CD5E006ECCAD /* OpenGL.framework */; };
 		29CBA3A91BF30BCE0036B776 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD64D1BF1C98D006ECCAD /* CoreVideo.framework */; };
 		29CBA3AA1BF30BCE0036B776 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6591BF1CA09006ECCAD /* AppKit.framework */; };
@@ -197,13 +199,15 @@
 		};
 		298C76301C06D3FE006BAE63 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
 			files = (
+				298C763E1C06E370006BAE63 /* lamp.fsh in CopyFiles */,
+				298C763C1C06E119006BAE63 /* fragment.fsh in CopyFiles */,
 				298C763A1C06D421006BAE63 /* vertex.vsh in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		29CBA3AE1BF30BCE0036B776 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -336,6 +340,8 @@
 		298C76341C06D3FE006BAE63 /* Color */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Color; sourceTree = BUILT_PRODUCTS_DIR; };
 		298C76361C06D410006BAE63 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		298C76371C06D410006BAE63 /* vertex.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = vertex.vsh; sourceTree = "<group>"; };
+		298C763B1C06E111006BAE63 /* fragment.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = fragment.fsh; sourceTree = "<group>"; };
+		298C763D1C06E36A006BAE63 /* lamp.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lamp.fsh; sourceTree = "<group>"; };
 		29CBA3B21BF30BCE0036B776 /* HelloTriangle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HelloTriangle; sourceTree = BUILT_PRODUCTS_DIR; };
 		29CBA3B51BF30C0E0036B776 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		29CBA3C71BF45FBC0036B776 /* Shaders */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Shaders; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -660,6 +666,8 @@
 		298C76351C06D410006BAE63 /* Color */ = {
 			isa = PBXGroup;
 			children = (
+				298C763D1C06E36A006BAE63 /* lamp.fsh */,
+				298C763B1C06E111006BAE63 /* fragment.fsh */,
 				298C76361C06D410006BAE63 /* main.cpp */,
 				298C76371C06D410006BAE63 /* vertex.vsh */,
 			);
