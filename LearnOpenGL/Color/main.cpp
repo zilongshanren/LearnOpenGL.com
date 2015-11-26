@@ -76,7 +76,7 @@ int main(int argc, const char * argv[]) {
     
     glEnable(GL_DEPTH_TEST);
     
-//    Shader shader("vertex.vsh", "fragment.fsh");
+    Shader shader("vertex.vsh", "fragment.fsh");
     Shader lampShader("vertex.vsh", "lamp.fsh");
     
     GLfloat vertices[] = {
@@ -165,8 +165,8 @@ int main(int argc, const char * argv[]) {
         do_movement();
         
         //do rendering
-        glClearColor(0.2, 0.3, 0.3, 1.0);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClearColor(0, 0.0, 0.0, 1.0);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
         
         lampShader.Use();
@@ -187,15 +187,32 @@ int main(int argc, const char * argv[]) {
         auto projection = glm::perspective(camera.Zoom, (GLfloat)WIDTH/(GLfloat)HEIGHT, 0.1f, 100.0f);
         glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
-        
-        // Don't forget to 'use' the corresponding shader program first (to set the uniform)
-//        GLint objectColorLoc = glGetUniformLocation(shader.Program, "objectColor");
-//        GLint lightColorLoc  = glGetUniformLocation(shader.Program, "lightColor");
-//        glUniform3f(objectColorLoc, 1.0f, 0.5f, 0.31f);
-//        glUniform3f(lightColorLoc,  1.0f, 1.0f, 1.0f); // Also set light's color (white)
-        
         //draw the first triangles
         glBindVertexArray(lightVAO);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        glBindVertexArray(0);
+        
+        shader.Use();
+        // Don't forget to 'use' the corresponding shader program first (to set the uniform)
+        GLint objectColorLoc = glGetUniformLocation(shader.Program, "objectColor");
+        GLint lightColorLoc  = glGetUniformLocation(shader.Program, "lightColor");
+        glUniform3f(objectColorLoc, 1.0f, 0.5f, 0.31f);
+        glUniform3f(lightColorLoc,  1.0f, 1.0f, 1.0f); // Also set light's color (white)
+        
+        model = glm::mat4();
+        modelLoc = glGetUniformLocation(shader.Program, "model");
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        
+        viewLoc = glGetUniformLocation(shader.Program, "view");
+        
+        view = camera.GetViewMatrix();
+        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        
+        projectionLoc = glGetUniformLocation(shader.Program, "projection");
+        projection = glm::perspective(camera.Zoom, (GLfloat)WIDTH/(GLfloat)HEIGHT, 0.1f, 100.0f);
+        glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+      
+        glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
         glBindVertexArray(0);
        
