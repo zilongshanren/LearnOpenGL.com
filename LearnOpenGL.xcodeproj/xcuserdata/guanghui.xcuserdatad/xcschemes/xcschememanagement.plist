@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Basick Lighting.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
 		<key>Blending.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -128,6 +133,11 @@
 			<true/>
 		</dict>
 		<key>29CBA4721BFEEC730036B776</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>29F8F0431C15C49200C7C327</key>
 		<dict>
 			<key>primary</key>
 			<true/>
