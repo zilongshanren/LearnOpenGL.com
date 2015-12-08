@@ -199,7 +199,15 @@ int main(int argc, const char * argv[]) {
         glUniform3f(lightColorLoc,  1.0f, 1.0f, 1.0f); // Also set light's color (white)
 
         GLint lightPosLoc = glGetUniformLocation(shader.Program, "lightPos");
+        
+        // Change the light's position values over time (can be done anywhere in the game loop actually, but try to do it at least before using the light source positions)
+        lightPos.x = 1.0f + sin(glfwGetTime()) * 2.0f;
+        lightPos.y = sin(glfwGetTime() / 2.0f) * 1.0f;
+        
         glUniform3f(lightPosLoc, lightPos.x, lightPos.y, lightPos.z);
+        
+        GLint viewPosLoc = glGetUniformLocation(shader.Program, "viewPos");
+        glUniform3f(viewPosLoc, camera.Position.x, camera.Position.y, camera.Position.z);
         
         model = glm::mat4();
         modelLoc = glGetUniformLocation(shader.Program, "model");
