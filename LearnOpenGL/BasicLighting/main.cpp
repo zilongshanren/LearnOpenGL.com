@@ -206,8 +206,8 @@ int main(int argc, const char * argv[]) {
         
         glUniform3f(lightPosLoc, lightPos.x, lightPos.y, lightPos.z);
         
-        GLint viewPosLoc = glGetUniformLocation(shader.Program, "viewPos");
-        glUniform3f(viewPosLoc, camera.Position.x, camera.Position.y, camera.Position.z);
+//        GLint viewPosLoc = glGetUniformLocation(shader.Program, "viewPos");
+//        glUniform3f(viewPosLoc, camera.Position.x, camera.Position.y, camera.Position.z);
         
         model = glm::mat4();
         modelLoc = glGetUniformLocation(shader.Program, "model");
