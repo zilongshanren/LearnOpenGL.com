@@ -49,6 +49,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>Materials.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
 		<key>Shaders.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -133,6 +138,11 @@
 			<true/>
 		</dict>
 		<key>29CBA4721BFEEC730036B776</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>29DCE96C1C2BDA3900766A6F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
