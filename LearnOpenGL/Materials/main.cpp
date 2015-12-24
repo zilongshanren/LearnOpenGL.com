@@ -76,7 +76,7 @@ int main(int argc, const char * argv[]) {
     
     glEnable(GL_DEPTH_TEST);
     
-    Shader shader("vertex.vsh", "fragment.fsh");
+    Shader lightingShader("vertex.vsh", "fragment.fsh");
     Shader lampShader("vertex.vsh", "lamp.fsh");
     
     GLfloat vertices[] = {
@@ -154,79 +154,98 @@ int main(int argc, const char * argv[]) {
 //    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
     while (!glfwWindowShouldClose(window)) {
-        // Calculate deltatime of current frame
         GLfloat currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
         
-        
+        // Check if any events have been activiated (key pressed, mouse moved etc.) and call corresponding response functions
         glfwPollEvents();
         do_movement();
         
-        //do rendering
-        glClearColor(0, 0.0, 0.0, 1.0);
+        // Clear the colorbuffer
+        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
+        // Use cooresponding shader when setting uniforms/drawing objects
+        lightingShader.Use();
+        GLint objectColorLoc = glGetUniformLocation(lightingShader.Program, "objectColor");
+        GLint lightColorLoc  = glGetUniformLocation(lightingShader.Program, "lightColor");
+        GLint lightPosLoc    = glGetUniformLocation(lightingShader.Program, "light.position");
+        GLint viewPosLoc     = glGetUniformLocation(lightingShader.Program, "viewPos");
+        glUniform3f(objectColorLoc, 1.0f, 0.5f, 0.31f);
+        glUniform3f(lightColorLoc,  1.0f, 1.0f, 1.0f);
+        glUniform3f(lightPosLoc,    lightPos.x, lightPos.y, lightPos.z);
+        glUniform3f(viewPosLoc,     camera.Position.x, camera.Position.y, camera.Position.z);
         
-        lampShader.Use();
         
-        auto model = glm::mat4();
-        model = glm::translate(model, lightPos);
-        model = glm::scale(model, glm::vec3(0.2f));
         
-        GLuint modelLoc = glGetUniformLocation(lampShader.Program, "model");
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        
-        GLuint viewLoc = glGetUniformLocation(lampShader.Program, "view");
-        
-        glm::mat4 view = camera.GetViewMatrix();
+        // Create camera transformations
+        glm::mat4 view;
+        view = camera.GetViewMatrix();
+        glm::mat4 projection = glm::perspective(camera.Zoom, (GLfloat)WIDTH / (GLfloat)HEIGHT, 0.1f, 100.0f);
+        // Get the uniform locations
+        GLint modelLoc = glGetUniformLocation(lightingShader.Program, "model");
+        GLint viewLoc  = glGetUniformLocation(lightingShader.Program,  "view");
+        GLint projLoc  = glGetUniformLocation(lightingShader.Program,  "projection");
+        // Pass the matrices to the shader
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
         
-        GLuint projectionLoc = glGetUniformLocation(lampShader.Program, "projection");
-        auto projection = glm::perspective(camera.Zoom, (GLfloat)WIDTH/(GLfloat)HEIGHT, 0.1f, 100.0f);
-        glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+        GLint matAmbientLoc  = glGetUniformLocation(lightingShader.Program, "material.ambient");
+        GLint matDiffuseLoc  = glGetUniformLocation(lightingShader.Program, "material.diffuse");
+        GLint matSpecularLoc = glGetUniformLocation(lightingShader.Program, "material.specular");
+        GLint matShineLoc    = glGetUniformLocation(lightingShader.Program, "material.shininess");
         
-        //draw the first triangles
+        glUniform3f(matAmbientLoc,  1.0f, 0.5f, 0.31f);
+        glUniform3f(matDiffuseLoc,  1.0f, 0.5f, 0.31f);
+        glUniform3f(matSpecularLoc, 0.5f, 0.5f, 0.5f);
+        glUniform1f(matShineLoc,    32.0f);
+        
+       
+        
+        GLint lightAmbientLoc  = glGetUniformLocation(lightingShader.Program, "light.ambient");
+        GLint lightDiffuseLoc  = glGetUniformLocation(lightingShader.Program, "light.diffuse");
+        GLint lightSpecularLoc = glGetUniformLocation(lightingShader.Program, "light.specular");
+        
+        glUniform3f(lightSpecularLoc, 1.0f, 1.0f, 1.0f);
+        
+        glm::vec3 lightColor;
+        lightColor.x = sin(glfwGetTime() * 2.0f);
+        lightColor.y = sin(glfwGetTime() * 0.7f);
+        lightColor.z = sin(glfwGetTime() * 1.3f);
+        
+        glm::vec3 diffuseColor = lightColor   * glm::vec3(0.5f); // Decrease the influence
+        glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); // Low influence
+        
+        glUniform3f(lightAmbientLoc, ambientColor.x, ambientColor.y, ambientColor.z);
+        glUniform3f(lightDiffuseLoc, diffuseColor.x, diffuseColor.y, diffuseColor.z);
+        
+        // Draw the container (using container's vertex attributes)
+        glBindVertexArray(VAO);
+        glm::mat4 model;
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        glBindVertexArray(0);
+        
+        // Also draw the lamp object, again binding the appropriate shader
+        lampShader.Use();
+        // Get location objects for the matrices on the lamp shader (these could be different on a different shader)
+        modelLoc = glGetUniformLocation(lampShader.Program, "model");
+        viewLoc  = glGetUniformLocation(lampShader.Program, "view");
+        projLoc  = glGetUniformLocation(lampShader.Program, "projection");
+        // Set matrices
+        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+        model = glm::mat4();
+        model = glm::translate(model, lightPos);
+        model = glm::scale(model, glm::vec3(0.2f)); // Make it a smaller cube
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        // Draw the light object (using light's vertex attributes)
         glBindVertexArray(lightVAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
         glBindVertexArray(0);
         
-        shader.Use();
-        // Don't forget to 'use' the corresponding shader program first (to set the uniform)
-        GLint objectColorLoc = glGetUniformLocation(shader.Program, "objectColor");
-        GLint lightColorLoc  = glGetUniformLocation(shader.Program, "lightColor");
-        glUniform3f(objectColorLoc, 1.0f, 0.5f, 0.31f);
-        glUniform3f(lightColorLoc,  1.0f, 1.0f, 1.0f); // Also set light's color (white)
-
-        GLint lightPosLoc = glGetUniformLocation(shader.Program, "lightPos");
-        
-        // Change the light's position values over time (can be done anywhere in the game loop actually, but try to do it at least before using the light source positions)
-//        lightPos.x = 1.0f + sin(glfwGetTime()) * 2.0f;
-//        lightPos.y = sin(glfwGetTime() / 2.0f) * 1.0f;
-        
-        glUniform3f(lightPosLoc, lightPos.x, lightPos.y, lightPos.z);
-        
-//        GLint viewPosLoc = glGetUniformLocation(shader.Program, "viewPos");
-//        glUniform3f(viewPosLoc, camera.Position.x, camera.Position.y, camera.Position.z);
-        
-        model = glm::mat4();
-        modelLoc = glGetUniformLocation(shader.Program, "model");
-       
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        
-        viewLoc = glGetUniformLocation(shader.Program, "view");
-        
-        view = camera.GetViewMatrix();
-        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-        
-        projectionLoc = glGetUniformLocation(shader.Program, "projection");
-        projection = glm::perspective(camera.Zoom, (GLfloat)WIDTH/(GLfloat)HEIGHT, 0.1f, 100.0f);
-        glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
-      
-        glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-        glBindVertexArray(0);
-       
+        // Swap the screen buffers
         glfwSwapBuffers(window);
     }
 
