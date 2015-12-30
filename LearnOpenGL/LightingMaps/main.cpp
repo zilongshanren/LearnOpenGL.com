@@ -144,7 +144,7 @@ int main(int argc, const char * argv[]) {
     SOIL_free_image_data(image);
     glBindTexture(GL_TEXTURE_2D, 0);
     
-    image = SOIL_load_image("container2_specular.png", &width, &height, 0, SOIL_LOAD_RGB);
+    image = SOIL_load_image("lighting_maps_specular_color.png", &width, &height, 0, SOIL_LOAD_RGB);
     GLuint specularMap;
     glGenTextures(1, &specularMap);
     glBindTexture(GL_TEXTURE_2D, specularMap);
@@ -160,6 +160,26 @@ int main(int argc, const char * argv[]) {
     
     SOIL_free_image_data(image);
     glBindTexture(GL_TEXTURE_2D, 0);
+    
+    
+    image = SOIL_load_image("matrix.jpg", &width, &height, 0, SOIL_LOAD_RGB);
+    GLuint emissionMap;
+    glGenTextures(1, &emissionMap);
+    glBindTexture(GL_TEXTURE_2D, emissionMap);
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    
+    SOIL_free_image_data(image);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    
+    
     
     
     GLuint VAO;
@@ -206,7 +226,6 @@ int main(int argc, const char * argv[]) {
         // Clear the colorbuffer
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        
 
         
         // Use cooresponding shader when setting uniforms/drawing objects
@@ -230,6 +249,12 @@ int main(int argc, const char * argv[]) {
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, specularMap);
         
+        GLint matEmissionLoc  = glGetUniformLocation(lightingShader.Program, "material.emission");
+        glUniform1i(matEmissionLoc, 2);
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D, emissionMap);
+        
+        
         GLint matShineLoc    = glGetUniformLocation(lightingShader.Program, "material.shininess");
         glUniform1f(matShineLoc,    32.0f);
         
@@ -244,11 +269,9 @@ int main(int argc, const char * argv[]) {
         // Pass the matrices to the shader
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
         glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-
-        
        
         // Set lights properties
-        glUniform3f(glGetUniformLocation(lightingShader.Program, "light.ambient"),  0.2f, 0.2f, 0.2f);
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "light.ambient"),  2.6f, 2.6f, 2.6f);
         glUniform3f(glGetUniformLocation(lightingShader.Program, "light.diffuse"),  0.5f, 0.5f, 0.5f);
         glUniform3f(glGetUniformLocation(lightingShader.Program, "light.specular"), 1.0f, 1.0f, 1.0f);
         
