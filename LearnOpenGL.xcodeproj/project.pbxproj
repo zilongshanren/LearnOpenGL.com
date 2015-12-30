@@ -170,6 +170,7 @@
 		29DCE9A11C33759800766A6F /* vertex.vsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29DCE99D1C33758E00766A6F /* vertex.vsh */; };
 		29DCE9A31C33AB4A00766A6F /* container2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29DCE9A21C33AB3F00766A6F /* container2.png */; };
 		29DCE9A41C33AC0F00766A6F /* libSOIL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CBA3ED1BF5C3450036B776 /* libSOIL.a */; };
+		29DCE9A61C33AE8700766A6F /* container2_specular.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29DCE9A51C33AE8100766A6F /* container2_specular.png */; };
 		29F8F0471C15C49200C7C327 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD65F1BF1CD5E006ECCAD /* OpenGL.framework */; };
 		29F8F0481C15C49200C7C327 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD64D1BF1C98D006ECCAD /* CoreVideo.framework */; };
 		29F8F0491C15C49200C7C327 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6591BF1CA09006ECCAD /* AppKit.framework */; };
@@ -358,6 +359,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				29DCE9A61C33AE8700766A6F /* container2_specular.png in CopyFiles */,
 				29DCE9A31C33AB4A00766A6F /* container2.png in CopyFiles */,
 				29DCE99F1C33759800766A6F /* fragment.fsh in CopyFiles */,
 				29DCE9A01C33759800766A6F /* lamp.fsh in CopyFiles */,
@@ -462,6 +464,7 @@
 		29DCE99C1C33758E00766A6F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		29DCE99D1C33758E00766A6F /* vertex.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = vertex.vsh; sourceTree = "<group>"; };
 		29DCE9A21C33AB3F00766A6F /* container2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = container2.png; path = LearnOpenGL/container2.png; sourceTree = SOURCE_ROOT; };
+		29DCE9A51C33AE8100766A6F /* container2_specular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = container2_specular.png; path = LearnOpenGL/container2_specular.png; sourceTree = SOURCE_ROOT; };
 		29F8F0541C15C49200C7C327 /* Basick Lighting */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Basick Lighting"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29F8F0561C15C4A300C7C327 /* fragment.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = fragment.fsh; sourceTree = "<group>"; };
 		29F8F0571C15C4A300C7C327 /* lamp.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lamp.fsh; sourceTree = "<group>"; };
@@ -902,6 +905,7 @@
 		29DCE9991C33758E00766A6F /* LightingMaps */ = {
 			isa = PBXGroup;
 			children = (
+				29DCE9A51C33AE8100766A6F /* container2_specular.png */,
 				29DCE9A21C33AB3F00766A6F /* container2.png */,
 				29DCE99A1C33758E00766A6F /* fragment.fsh */,
 				29DCE99B1C33758E00766A6F /* lamp.fsh */,

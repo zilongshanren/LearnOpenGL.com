@@ -33,7 +33,7 @@ Camera  camera(glm::vec3(0.0f, 0.0f, 3.0f));
 GLfloat lastX  =  WIDTH  / 2.0;
 GLfloat lastY  =  HEIGHT / 2.0;
 
-glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
+glm::vec3 lightPos(0.5f, 0.3f, 1.5f);
 bool    keys[1024];
 
 // Deltatime
@@ -144,6 +144,23 @@ int main(int argc, const char * argv[]) {
     SOIL_free_image_data(image);
     glBindTexture(GL_TEXTURE_2D, 0);
     
+    image = SOIL_load_image("container2_specular.png", &width, &height, 0, SOIL_LOAD_RGB);
+    GLuint specularMap;
+    glGenTextures(1, &specularMap);
+    glBindTexture(GL_TEXTURE_2D, specularMap);
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    
+    SOIL_free_image_data(image);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    
     
     GLuint VAO;
     glGenVertexArrays(1, &VAO);
@@ -208,6 +225,13 @@ int main(int argc, const char * argv[]) {
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, diffuseMap);
         
+        GLint matSpecularLoc  = glGetUniformLocation(lightingShader.Program, "material.specular");
+        glUniform1i(matSpecularLoc, 1);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, specularMap);
+        
+        GLint matShineLoc    = glGetUniformLocation(lightingShader.Program, "material.shininess");
+        glUniform1f(matShineLoc,    32.0f);
         
         // Create camera transformations
         glm::mat4 view;
@@ -220,31 +244,14 @@ int main(int argc, const char * argv[]) {
         // Pass the matrices to the shader
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
         glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-        
-        GLint matSpecularLoc = glGetUniformLocation(lightingShader.Program, "material.specular");
-        GLint matShineLoc    = glGetUniformLocation(lightingShader.Program, "material.shininess");
-        
-        
-        glUniform3f(matSpecularLoc, 0.5f, 0.5f, 0.5f);
-        glUniform1f(matShineLoc,    32.0f);
+
         
        
-        GLint lightAmbientLoc  = glGetUniformLocation(lightingShader.Program, "light.ambient");
-        GLint lightDiffuseLoc  = glGetUniformLocation(lightingShader.Program, "light.diffuse");
-        GLint lightSpecularLoc = glGetUniformLocation(lightingShader.Program, "light.specular");
+        // Set lights properties
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "light.ambient"),  0.2f, 0.2f, 0.2f);
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "light.diffuse"),  0.5f, 0.5f, 0.5f);
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "light.specular"), 1.0f, 1.0f, 1.0f);
         
-        glUniform3f(lightSpecularLoc, 1.0f, 1.0f, 1.0f);
-        
-        glm::vec3 lightColor;
-        lightColor.x = 1;
-        lightColor.y = 1;
-        lightColor.z = 1;
-        
-        glm::vec3 diffuseColor = lightColor   * glm::vec3(0.5f); // Decrease the influence
-        glm::vec3 ambientColor = diffuseColor * glm::vec3(0.5f); // Low influence
-        
-        glUniform3f(lightAmbientLoc, ambientColor.x, ambientColor.y, ambientColor.z);
-        glUniform3f(lightDiffuseLoc, diffuseColor.x, diffuseColor.y, diffuseColor.z);
         
         // Draw the container (using container's vertex attributes)
         glBindVertexArray(VAO);
