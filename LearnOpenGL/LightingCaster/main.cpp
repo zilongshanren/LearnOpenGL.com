@@ -292,6 +292,9 @@ int main(int argc, const char * argv[]) {
         GLint lightCutOff = glGetUniformLocation(lightingShader.Program, "light.cutOff");
         glUniform1f(lightCutOff, glm::cos(glm::radians(12.5f)));
         
+        GLint lightOutterCutOff = glGetUniformLocation(lightingShader.Program, "light.outerCutOff");
+        glUniform1f(lightOutterCutOff, glm::cos(glm::radians(17.5f)));
+        
         // Draw the container (using container's vertex attributes)
         glm::mat4 model;
         glBindVertexArray(VAO);
