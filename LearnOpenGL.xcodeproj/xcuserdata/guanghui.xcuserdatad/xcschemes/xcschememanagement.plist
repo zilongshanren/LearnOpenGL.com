@@ -49,6 +49,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>LightingCaster.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
 		<key>LightingMap.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -103,6 +108,11 @@
 			<true/>
 		</dict>
 		<key>298C76261C06D3FE006BAE63</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>29AD5E3D1C3CE0AC00673703</key>
 		<dict>
 			<key>primary</key>
 			<true/>
