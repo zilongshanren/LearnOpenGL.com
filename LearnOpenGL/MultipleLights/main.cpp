@@ -319,6 +319,24 @@ int main(int argc, const char * argv[]) {
         glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[3].linear"), 0.09);
         glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[3].quadratic"), 0.032);
         
+        
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.ambient"), 0.1f, 0.1f, 0.1f);
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.diffuse"), 0.8f, 0.8f, 0.8f);
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.specular"), 1.0f, 1.0f, 1.0f);
+        
+        GLint lightDirPos = glGetUniformLocation(lightingShader.Program, "spotLight.position");
+        glUniform3f(lightDirPos, camera.Position.x, camera.Position.y, camera.Position.z);
+        
+        GLint lightDirVec = glGetUniformLocation(lightingShader.Program, "spotLight.direction");
+        glUniform3f(lightDirVec, camera.Front.x, camera.Front.y, camera.Front.z);
+        
+        GLint lightCutOff = glGetUniformLocation(lightingShader.Program, "spotLight.cutOff");
+        glUniform1f(lightCutOff, glm::cos(glm::radians(12.5f)));
+        
+        GLint lightOutterCutOff = glGetUniformLocation(lightingShader.Program, "spotLight.outerCutOff");
+        glUniform1f(lightOutterCutOff, glm::cos(glm::radians(17.5f)));
+     
+        
         // Draw the container (using container's vertex attributes)
         glm::mat4 model;
         glBindVertexArray(VAO);
