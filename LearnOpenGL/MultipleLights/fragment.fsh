@@ -73,7 +73,7 @@ void main()
     for(int i = 0; i < NR_POINT_LIGHTS; i++)
         result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);
     // Phase 3: Spot light
-    result += CalcSpotLight(spotLight, norm, FragPos, viewDir);
+//    result += CalcSpotLight(spotLight, norm, FragPos, viewDir);
     
     color = vec4(result, 1.0);
 }
