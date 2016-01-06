@@ -29,7 +29,7 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void do_movement();
 
 // Camera
-Camera  camera(glm::vec3(0.0f, 0.0f, 3.0f));
+Camera  camera(glm::vec3(0.0f, 0.0f, 6.0f));
 GLfloat lastX  =  WIDTH  / 2.0;
 GLfloat lastY  =  HEIGHT / 2.0;
 
@@ -162,24 +162,36 @@ int main(int argc, const char * argv[]) {
     glBindTexture(GL_TEXTURE_2D, 0);
     
     
-    image = SOIL_load_image("matrix.jpg", &width, &height, 0, SOIL_LOAD_RGB);
-    GLuint emissionMap;
-    glGenTextures(1, &emissionMap);
-    glBindTexture(GL_TEXTURE_2D, emissionMap);
+//    image = SOIL_load_image("matrix.jpg", &width, &height, 0, SOIL_LOAD_RGB);
+//    GLuint emissionMap;
+//    glGenTextures(1, &emissionMap);
+//    glBindTexture(GL_TEXTURE_2D, emissionMap);
+//    
+//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+//    
+//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+//    
+//    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+//    glGenerateMipmap(GL_TEXTURE_2D);
+//    
+//    SOIL_free_image_data(image);
+//    glBindTexture(GL_TEXTURE_2D, 0);
     
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-    glGenerateMipmap(GL_TEXTURE_2D);
-    
-    SOIL_free_image_data(image);
-    glBindTexture(GL_TEXTURE_2D, 0);
-    
-    
+    // Positions all containers
+    glm::vec3 cubePositions[] = {
+        glm::vec3( 0.0f,  0.0f,  0.0f),
+        glm::vec3( 2.0f,  5.0f, -15.0f),
+        glm::vec3(-1.5f, -2.2f, -2.5f),
+        glm::vec3(-3.8f, -2.0f, -12.3f),
+        glm::vec3( 2.4f, -0.4f, -3.5f),
+        glm::vec3(-1.7f,  3.0f, -7.5f),
+        glm::vec3( 1.3f, -2.0f, -2.5f),
+        glm::vec3( 1.5f,  2.0f, -2.5f),
+        glm::vec3( 1.5f,  0.2f, -1.5f),
+        glm::vec3(-1.3f,  1.0f, -1.5f)
+    };
     
     
     GLuint VAO;
@@ -249,10 +261,10 @@ int main(int argc, const char * argv[]) {
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, specularMap);
         
-        GLint matEmissionLoc  = glGetUniformLocation(lightingShader.Program, "material.emission");
-        glUniform1i(matEmissionLoc, 2);
-        glActiveTexture(GL_TEXTURE2);
-        glBindTexture(GL_TEXTURE_2D, emissionMap);
+//        GLint matEmissionLoc  = glGetUniformLocation(lightingShader.Program, "material.emission");
+//        glUniform1i(matEmissionLoc, 2);
+//        glActiveTexture(GL_TEXTURE2);
+//        glBindTexture(GL_TEXTURE_2D, emissionMap);
         
         
         GLint matShineLoc    = glGetUniformLocation(lightingShader.Program, "material.shininess");
@@ -275,13 +287,24 @@ int main(int argc, const char * argv[]) {
         glUniform3f(glGetUniformLocation(lightingShader.Program, "light.diffuse"),  0.5f, 0.5f, 0.5f);
         glUniform3f(glGetUniformLocation(lightingShader.Program, "light.specular"), 1.0f, 1.0f, 1.0f);
         
+        GLint lightDirPos = glGetUniformLocation(lightingShader.Program, "light.direction");
+        glUniform3f(lightDirPos, -0.2f, -1.0f, -0.3f);
         
         // Draw the container (using container's vertex attributes)
-        glBindVertexArray(VAO);
         glm::mat4 model;
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        glBindVertexArray(VAO);
+        for(GLuint i = 0; i < 10; i++)
+        {
+            model = glm::mat4();
+            model = glm::translate(model, cubePositions[i]);
+            GLfloat angle = 20.0f * i;
+            model = glm::rotate(model, angle, glm::vec3(1.0f, 0.3f, 0.5f));
+            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+            
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
         glBindVertexArray(0);
+
         
         // Also draw the lamp object, again binding the appropriate shader
         lampShader.Use();
@@ -289,6 +312,9 @@ int main(int argc, const char * argv[]) {
         modelLoc = glGetUniformLocation(lampShader.Program, "model");
         viewLoc  = glGetUniformLocation(lampShader.Program, "view");
         projLoc  = glGetUniformLocation(lampShader.Program, "projection");
+        
+       
+        
         // Set matrices
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
         glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
