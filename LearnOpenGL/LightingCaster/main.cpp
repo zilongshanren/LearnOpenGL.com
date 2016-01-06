@@ -287,9 +287,10 @@ int main(int argc, const char * argv[]) {
         glUniform3f(glGetUniformLocation(lightingShader.Program, "light.diffuse"),  0.5f, 0.5f, 0.5f);
         glUniform3f(glGetUniformLocation(lightingShader.Program, "light.specular"), 1.0f, 1.0f, 1.0f);
         
+        //distance 200 is a good value
         glUniform1f(glGetUniformLocation(lightingShader.Program, "light.constant"),  1.0f);
-        glUniform1f(glGetUniformLocation(lightingShader.Program, "light.linear"),    0.09);
-        glUniform1f(glGetUniformLocation(lightingShader.Program, "light.quadratic"), 0.032);
+        glUniform1f(glGetUniformLocation(lightingShader.Program, "light.linear"),    0.022);
+        glUniform1f(glGetUniformLocation(lightingShader.Program, "light.quadratic"), 0.0019);
         
         GLint lightDirPos = glGetUniformLocation(lightingShader.Program, "light.position");
         glUniform3f(lightDirPos, lightPos.x, lightPos.y, lightPos.z);
