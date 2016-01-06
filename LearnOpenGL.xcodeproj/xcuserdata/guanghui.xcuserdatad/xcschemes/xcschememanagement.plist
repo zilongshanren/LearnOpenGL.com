@@ -64,6 +64,11 @@
 			<key>orderHint</key>
 			<integer>13</integer>
 		</dict>
+		<key>ModelLoading.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>17</integer>
+		</dict>
 		<key>MultipleLights.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -123,6 +128,11 @@
 			<true/>
 		</dict>
 		<key>29AD5E611C3CF7D000673703</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>29AD5E851C3D1C1800673703</key>
 		<dict>
 			<key>primary</key>
 			<true/>
