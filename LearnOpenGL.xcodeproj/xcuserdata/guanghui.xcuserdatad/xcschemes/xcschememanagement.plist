@@ -64,6 +64,11 @@
 			<key>orderHint</key>
 			<integer>13</integer>
 		</dict>
+		<key>MultipleLights.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
+		</dict>
 		<key>Shaders.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -113,6 +118,11 @@
 			<true/>
 		</dict>
 		<key>29AD5E3D1C3CE0AC00673703</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>29AD5E611C3CF7D000673703</key>
 		<dict>
 			<key>primary</key>
 			<true/>
