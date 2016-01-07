@@ -20,6 +20,14 @@
 		29224F071C3E337A0076DA5F /* nanosuit in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29224F061C3E33730076DA5F /* nanosuit */; };
 		29224F081C3E337A0076DA5F /* fragment.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29224EEC1C3E33590076DA5F /* fragment.fsh */; };
 		29224F091C3E337A0076DA5F /* vertex.vsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29224F041C3E33590076DA5F /* vertex.vsh */; };
+		29224F141C3E59860076DA5F /* back.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29224F0E1C3E59750076DA5F /* back.jpg */; };
+		29224F151C3E59870076DA5F /* bottom.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29224F0F1C3E59750076DA5F /* bottom.jpg */; };
+		29224F161C3E59870076DA5F /* front.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29224F101C3E59750076DA5F /* front.jpg */; };
+		29224F171C3E59870076DA5F /* left.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29224F111C3E59750076DA5F /* left.jpg */; };
+		29224F181C3E59870076DA5F /* right.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29224F121C3E59750076DA5F /* right.jpg */; };
+		29224F191C3E59870076DA5F /* top.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29224F131C3E59750076DA5F /* top.jpg */; };
+		29224F1C1C3E5C530076DA5F /* skybox.vsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29224F1A1C3E5A280076DA5F /* skybox.vsh */; };
+		29224F1D1C3E5C530076DA5F /* skybox.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29224F1B1C3E5A370076DA5F /* skybox.fsh */; };
 		294AD6481BF1C928006ECCAD /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6471BF1C928006ECCAD /* libglfw3.a */; };
 		294AD64C1BF1C97B006ECCAD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD64B1BF1C97B006ECCAD /* CoreGraphics.framework */; };
 		294AD6561BF1C9F3006ECCAD /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294AD6551BF1C9F3006ECCAD /* IOKit.framework */; };
@@ -249,6 +257,14 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				29224F1C1C3E5C530076DA5F /* skybox.vsh in CopyFiles */,
+				29224F1D1C3E5C530076DA5F /* skybox.fsh in CopyFiles */,
+				29224F141C3E59860076DA5F /* back.jpg in CopyFiles */,
+				29224F151C3E59870076DA5F /* bottom.jpg in CopyFiles */,
+				29224F161C3E59870076DA5F /* front.jpg in CopyFiles */,
+				29224F171C3E59870076DA5F /* left.jpg in CopyFiles */,
+				29224F181C3E59870076DA5F /* right.jpg in CopyFiles */,
+				29224F191C3E59870076DA5F /* top.jpg in CopyFiles */,
 				29224F071C3E337A0076DA5F /* nanosuit in CopyFiles */,
 				29224F081C3E337A0076DA5F /* fragment.fsh in CopyFiles */,
 				29224F091C3E337A0076DA5F /* vertex.vsh in CopyFiles */,
@@ -506,6 +522,14 @@
 		29224EEE1C3E33590076DA5F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		29224F041C3E33590076DA5F /* vertex.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = vertex.vsh; sourceTree = "<group>"; };
 		29224F061C3E33730076DA5F /* nanosuit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nanosuit; sourceTree = "<group>"; };
+		29224F0E1C3E59750076DA5F /* back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back.jpg; sourceTree = "<group>"; };
+		29224F0F1C3E59750076DA5F /* bottom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bottom.jpg; sourceTree = "<group>"; };
+		29224F101C3E59750076DA5F /* front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = front.jpg; sourceTree = "<group>"; };
+		29224F111C3E59750076DA5F /* left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = left.jpg; sourceTree = "<group>"; };
+		29224F121C3E59750076DA5F /* right.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = right.jpg; sourceTree = "<group>"; };
+		29224F131C3E59750076DA5F /* top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = top.jpg; sourceTree = "<group>"; };
+		29224F1A1C3E5A280076DA5F /* skybox.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = skybox.vsh; sourceTree = "<group>"; };
+		29224F1B1C3E5A370076DA5F /* skybox.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = skybox.fsh; sourceTree = "<group>"; };
 		294AD63D1BF1C7D3006ECCAD /* HelloWindow */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HelloWindow; sourceTree = BUILT_PRODUCTS_DIR; };
 		294AD6471BF1C928006ECCAD /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = LearnOpenGL/libglfw3.a; sourceTree = "<group>"; };
 		294AD64B1BF1C97B006ECCAD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -887,13 +911,29 @@
 		29224EEB1C3E33590076DA5F /* CubeMaps */ = {
 			isa = PBXGroup;
 			children = (
+				29224F0D1C3E59750076DA5F /* skybox */,
 				29224F061C3E33730076DA5F /* nanosuit */,
 				29224EEC1C3E33590076DA5F /* fragment.fsh */,
 				29224EED1C3E33590076DA5F /* lamp.fsh */,
 				29224EEE1C3E33590076DA5F /* main.cpp */,
 				29224F041C3E33590076DA5F /* vertex.vsh */,
+				29224F1A1C3E5A280076DA5F /* skybox.vsh */,
+				29224F1B1C3E5A370076DA5F /* skybox.fsh */,
 			);
 			path = CubeMaps;
+			sourceTree = "<group>";
+		};
+		29224F0D1C3E59750076DA5F /* skybox */ = {
+			isa = PBXGroup;
+			children = (
+				29224F0E1C3E59750076DA5F /* back.jpg */,
+				29224F0F1C3E59750076DA5F /* bottom.jpg */,
+				29224F101C3E59750076DA5F /* front.jpg */,
+				29224F111C3E59750076DA5F /* left.jpg */,
+				29224F121C3E59750076DA5F /* right.jpg */,
+				29224F131C3E59750076DA5F /* top.jpg */,
+			);
+			path = skybox;
 			sourceTree = "<group>";
 		};
 		294AD6341BF1C7D3006ECCAD = {
