@@ -29,6 +29,11 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
+		<key>CubeMaps.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>18</integer>
+		</dict>
 		<key>DepthTesting.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -97,6 +102,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>29224ED41C3E33280076DA5F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>294AD63C1BF1C7D3006ECCAD</key>
 		<dict>
 			<key>primary</key>
