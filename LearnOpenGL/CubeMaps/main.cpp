@@ -212,20 +212,6 @@ int main()
         glm::mat4 projection = glm::perspective(camera.Zoom, (float)screenWidth/(float)screenHeight, 0.1f, 100.0f);
         glm::mat4 view = camera.GetViewMatrix();
         
-        glDepthMask(GL_FALSE);
-        skyboxShader.Use();
-        // Transformation matrices
-        glUniformMatrix4fv(glGetUniformLocation(skyboxShader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
-        view = glm::mat4(glm::mat3(camera.GetViewMatrix()));
-        glUniformMatrix4fv(glGetUniformLocation(skyboxShader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
-        
-        glBindVertexArray(skyboxVAO);
-        glActiveTexture(GL_TEXTURE0);
-        glUniform1i(glGetUniformLocation(skyboxShader.Program, "skybox"), 0);
-        glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-        glBindVertexArray(0);
-        glDepthMask(GL_TRUE);
         
         
         shader.Use();   // <-- Don't forget this one!
@@ -261,8 +247,21 @@ int main()
         ourModel.draw(shader.Program);
         
         
-     
+        glDepthFunc(GL_LEQUAL);
+        skyboxShader.Use();
+        // Transformation matrices
+        glUniformMatrix4fv(glGetUniformLocation(skyboxShader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+        view = glm::mat4(glm::mat3(camera.GetViewMatrix()));
+        glUniformMatrix4fv(glGetUniformLocation(skyboxShader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
         
+        glBindVertexArray(skyboxVAO);
+        glActiveTexture(GL_TEXTURE0);
+        glUniform1i(glGetUniformLocation(skyboxShader.Program, "skybox"), 0);
+        glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        glBindVertexArray(0);
+        glDepthFunc(GL_LESS);
+
         // Swap the buffers
         glfwSwapBuffers(window);
     }
