@@ -579,6 +579,8 @@
 		29AD5EFE1C3D202300673703 /* libz.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.tbd; path = usr/lib/libz.1.tbd; sourceTree = SDKROOT; };
 		29AD5F001C3D218E00673703 /* lamp.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lamp.fsh; sourceTree = "<group>"; };
 		29AD5F021C3D246700673703 /* nanosuit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nanosuit; sourceTree = "<group>"; };
+		29C0C8751C40E9A5001A190B /* Mesh.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
+		29C0C8761C40E9A5001A190B /* Model.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Model.hpp; sourceTree = "<group>"; };
 		29CBA3B21BF30BCE0036B776 /* HelloTriangle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HelloTriangle; sourceTree = BUILT_PRODUCTS_DIR; };
 		29CBA3B51BF30C0E0036B776 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		29CBA3C71BF45FBC0036B776 /* Shaders */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Shaders; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1014,6 +1016,7 @@
 		294AD65D1BF1CA6A006ECCAD /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				29C0C8741C40E9A5001A190B /* Model */,
 				29AD5EA21C3D1C4000673703 /* Assimp */,
 				29CBA44C1BFC6F690036B776 /* Camera.h */,
 				29CBA3ED1BF5C3450036B776 /* libSOIL.a */,
@@ -1115,6 +1118,16 @@
 			);
 			name = Assimp;
 			path = LearnOpenGL/Assimp;
+			sourceTree = "<group>";
+		};
+		29C0C8741C40E9A5001A190B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				29C0C8751C40E9A5001A190B /* Mesh.hpp */,
+				29C0C8761C40E9A5001A190B /* Model.hpp */,
+			);
+			name = Model;
+			path = LearnOpenGL/Model;
 			sourceTree = "<group>";
 		};
 		29CBA3B41BF30C0E0036B776 /* HelloTriangles */ = {

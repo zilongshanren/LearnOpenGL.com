@@ -110,7 +110,7 @@ int main()
     Shader shader("vertex.vsh", "fragment.fsh");
     
     // Load models
-    Model ourModel("nanosuit/nanosuit.obj");
+    Model nanosuit("nanosuit/nanosuit.obj");
     
     
     vector<const GLchar*> faces;
@@ -183,12 +183,6 @@ int main()
     
     Shader skyboxShader("skybox.vsh", "skybox.fsh");
     
-    // Point light positions
-    glm::vec3 pointLightPositions[] = {
-        glm::vec3(2.3f, -1.6f, -3.0f),
-        glm::vec3(-1.7f, 0.9f, 1.0f)
-    };
-    
     // Draw in wireframe
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     
@@ -208,44 +202,25 @@ int main()
         glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
-        // Transformation matrices
-        glm::mat4 projection = glm::perspective(camera.Zoom, (float)screenWidth/(float)screenHeight, 0.1f, 100.0f);
-        glm::mat4 view = camera.GetViewMatrix();
-        
-        
-        
-        shader.Use();   // <-- Don't forget this one!
-        view = camera.GetViewMatrix();
-        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
-        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
-        
-        // Set the lighting uniforms
-        glUniform3f(glGetUniformLocation(shader.Program, "viewPos"), camera.Position.x, camera.Position.y, camera.Position.z);
-        // Point light 1
-        glUniform3f(glGetUniformLocation(shader.Program, "pointLights[0].position"), pointLightPositions[0].x, pointLightPositions[0].y, pointLightPositions[0].z);
-        glUniform3f(glGetUniformLocation(shader.Program, "pointLights[0].ambient"), 0.05f, 0.05f, 0.05f);
-        glUniform3f(glGetUniformLocation(shader.Program, "pointLights[0].diffuse"), 1.0f, 1.0f, 1.0f);
-        glUniform3f(glGetUniformLocation(shader.Program, "pointLights[0].specular"), 1.0f, 1.0f, 1.0f);
-        glUniform1f(glGetUniformLocation(shader.Program, "pointLights[0].constant"), 1.0f);
-        glUniform1f(glGetUniformLocation(shader.Program, "pointLights[0].linear"), 0.009);
-        glUniform1f(glGetUniformLocation(shader.Program, "pointLights[0].quadratic"), 0.0032);
-        // Point light 2
-        glUniform3f(glGetUniformLocation(shader.Program, "pointLights[1].position"), pointLightPositions[1].x, pointLightPositions[1].y, pointLightPositions[1].z);
-        glUniform3f(glGetUniformLocation(shader.Program, "pointLights[1].ambient"), 0.05f, 0.05f, 0.05f);
-        glUniform3f(glGetUniformLocation(shader.Program, "pointLights[1].diffuse"), 1.0f, 1.0f, 1.0f);
-        glUniform3f(glGetUniformLocation(shader.Program, "pointLights[1].specular"), 1.0f, 1.0f, 1.0f);
-        glUniform1f(glGetUniformLocation(shader.Program, "pointLights[1].constant"), 1.0f);
-        glUniform1f(glGetUniformLocation(shader.Program, "pointLights[1].linear"), 0.009);
-        glUniform1f(glGetUniformLocation(shader.Program, "pointLights[1].quadratic"), 0.0032);
-        
-        
-        // Draw the loaded model
+        // Draw scene as normal
+        shader.Use();
         glm::mat4 model;
-        model = glm::translate(model, glm::vec3(0.0f, -1.75f, -2.0f)); // Translate it down a bit so it's at the center of the scene
+        model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f)); // Translate it down a bit so it's at the center of the scene
         model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));	// It's a bit too big for our scene, so scale it down
+        
+        glm::mat4 view = camera.GetViewMatrix();
+        glm::mat4 projection = glm::perspective(camera.Zoom, (float)screenWidth/(float)screenHeight, 0.1f, 100.0f);
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+        glUniform3f(glGetUniformLocation(shader.Program, "cameraPos"), camera.Position.x, camera.Position.y, camera.Position.z);
+        
+        glActiveTexture(GL_TEXTURE3);
+        // We already have 3 texture units active (in this shader) so set the skybox as the 4th texture unit (texture units are 0 based so index number 3)
+        glUniform1i(glGetUniformLocation(shader.Program, "skybox"), 3);
+        // Now draw the nanosuit
         glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
-        ourModel.draw(shader.Program);
+        nanosuit.Draw(shader);
         
         
         glDepthFunc(GL_LEQUAL);
