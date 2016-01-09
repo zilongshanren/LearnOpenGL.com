@@ -39,8 +39,15 @@ vec3 CalcPointLight(PointLight light, Material mat, vec3 normal, vec3 fragPos, v
 
 void main()
 {
+    //reflect
+//    vec3 I = normalize(fragPosition - viewPos);
+//    vec3 R = reflect(I, normalize(Normal));
+//    color = texture(skybox, R);
+    
+    //refract
+    float ratio = 1.00 / 1.52;
     vec3 I = normalize(fragPosition - viewPos);
-    vec3 R = reflect(I, normalize(Normal));
+    vec3 R = refract(I, normalize(Normal), ratio);
     color = texture(skybox, R);
 }
 
