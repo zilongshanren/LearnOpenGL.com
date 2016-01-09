@@ -32,19 +32,16 @@ uniform vec3 viewPos;
 uniform PointLight pointLights[NR_POINT_LIGHTS];
 uniform Material material;
 
+uniform samplerCube skybox;
+
 // Function prototypes
 vec3 CalcPointLight(PointLight light, Material mat, vec3 normal, vec3 fragPos, vec3 viewDir);
 
 void main()
 {
-    vec3 result;
-    vec3 viewDir = normalize(viewPos - fragPosition);
-    vec3 norm = normalize(Normal);
-    
-    for(int i = 0; i < NR_POINT_LIGHTS; i++)
-        result += CalcPointLight(pointLights[i], material, norm, fragPosition, viewDir);
-    
-    color = vec4(result, 1.0f);
+    vec3 I = normalize(fragPosition - viewPos);
+    vec3 R = reflect(I, normalize(Normal));
+    color = texture(skybox, R);
 }
 
 
